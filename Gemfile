@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # GEMS USED/DOWNLOADED
 
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'cancancan', '~> 2.0'
 gem 'pg', '~> 0.18.4'
 gem 'will_paginate', '~> 3.1.0'
