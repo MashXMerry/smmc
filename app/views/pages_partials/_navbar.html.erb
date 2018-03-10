@@ -1,7 +1,7 @@
 <nav class="purple lighten-2">
   <div class="container nav-wrapper">
     <a href="#!" class="brand-logo">Sumimachine</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="sass.html">Anime</a></li>
       <li><a href="badges.html">Music</a></li>
@@ -17,18 +17,24 @@
       <li><a href="#!">Sign Up</a></li>
     </ul>
     <!-- Mobile Side Nav -->
-    <ul class="side-nav" id="mobile-demo">
+    <ul id="slide-out" class="side-nav">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <%= image_tag "sidenav_bg.jpg", style:"width:100%" %>
+          </div>
+          <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
+          <a href="#!name"><span class="white-text name">Mashiyyat Delos Santos</span></a>
+          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div>
+      </li>
+      <li><a href="#!"><i class="material-icons">cloud</i>Profile</a></li>
+      <li><a href="#!">Settings</a></li>
+      <li><div class="divider"></div></li>
       <li><a href="sass.html">Anime</a></li>
       <li><a href="badges.html">Music</a></li>
       <li><a href="collapsible.html">Manga</a></li>
       <li><a href="mobile.html">Games</a></li>
-      <li>
-        <a href="#!" data-activates="dropdown2" class="dropdown-button">Join Us</a>
-        <ul id="dropdown2" class="dropdown-content">
-          <li><a href="#!">Login</a></li>
-          <li><a href="#!">Sign Up</a></li>
-        </ul>
-      </li>
     </ul>
   </div>
 </nav>
