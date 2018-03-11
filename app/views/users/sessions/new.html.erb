@@ -1,0 +1,44 @@
+<%= render 'pages_partials/navbar' %>
+
+<div class="container row">
+  <div class="card col s12 m12 l6 offset-l3 session-card">
+    <h4 class="center">Login</h4>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="card-content">
+        <div class="input-field">
+          <i class="material-icons prefix">mail</i>
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="input-field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-action">
+        <div class="actions">
+          <%= f.submit "Log in" , class:"btn blue waves-effect waves-purple green" %>
+        </div>
+      </div>
+    <% end %>
+    <p class="red-text center"><%= alert %></p>
+  </div>
+</div>
+
+<style>
+  .session-card {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+</style>
+
+<%= render 'pages_partials/footer' %>

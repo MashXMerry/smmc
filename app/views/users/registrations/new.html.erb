@@ -1,0 +1,42 @@
+<%= render 'pages_partials/navbar' %>
+
+<div class="container row cente-align">
+  <div class="card col l6 s12 offset-l3 registration-card">
+    <h4 class="center">Sign Up</h4>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="card-content">
+        <div class="input-field">
+          <i class="material-icons prefix">mail</i>
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix">lock</i>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>  
+      </div>
+      <div class="card-action">
+        <div class="actions">
+          <%= f.submit "Sign up" , class:"btn waves-effect waves-blue purlple darken-1" %>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
+<%= render 'pages_partials/footer' %>
+
+<style>
+  .registration-card {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+</style>

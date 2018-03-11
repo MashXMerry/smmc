@@ -1,20 +1,50 @@
-<nav class="purple lighten-2">
+<nav class="purple darken-1">
   <div class="container nav-wrapper">
-    <a href="#!" class="brand-logo">Sumimachine</a>
+    <%= link_to "Sumimachine" , root_path , class:"brand-logo" %>
+  </div>
+</nav>
+
+<nav class="purple lighten-2 my-navbar">
+  <div class="container nav-wrapper">
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="sass.html">Anime</a></li>
       <li><a href="badges.html">Music</a></li>
       <li><a href="collapsible.html">Manga</a></li>
       <li><a href="mobile.html">Games</a></li>
-       <li>
-        <a class="dropdown-button" href="#!" data-activates="dropdown1">Join Us<i class="material-icons right">arrow_drop_down</i>
+      <li>
+        <a class="dropdown-button" href="#!" data-activates="dropdown2">more<i class="material-icons right">arrow_drop_down</i>
           </a>
-        </li>
+      </li>
+      <li>
+        <% if user_signed_in? %>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.email %><i class="material-icons right">arrow_drop_down</i>
+          </a>
+        <% else %>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">Join Us<i class="material-icons right">arrow_drop_down</i>
+          </a>
+        <% end %>
+      </li>
     </ul>
+    <!-- More -->
+    <ul class="dropdown-content" id="dropdown2">
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+      <li><a href="">Links</a></li>
+    </ul>
+    <!-- Join Us -->
     <ul id="dropdown1" class="dropdown-content">
-      <li><a href="#!">Login</a></li>
-      <li><a href="#!">Sign Up</a></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
+        <li><%= link_to "Account Settings" , edit_user_registration_path %></li>
+      <% else %>
+        <li><%= link_to "Login" ,new_user_session_path %></li>
+        <li><%= link_to "Sign Up" ,new_user_registration_path %></li>
+      <% end %>
     </ul>
     <!-- Mobile Side Nav -->
     <ul id="slide-out" class="side-nav">
@@ -25,16 +55,47 @@
           </div>
           <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
           <a href="#!name"><span class="white-text name">Mashiyyat Delos Santos</span></a>
-          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          <a href="#!email"><span class="white-text email">delossantos.mash@gmail.com</span></a>
         </div>
       </li>
       <li><a href="#!"><i class="material-icons">cloud</i>Profile</a></li>
-      <li><a href="#!">Settings</a></li>
+      <li><a href="#!"><i class="material-icons">settings</i>Settings</a></li>
       <li><div class="divider"></div></li>
-      <li><a href="sass.html">Anime</a></li>
-      <li><a href="badges.html">Music</a></li>
-      <li><a href="collapsible.html">Manga</a></li>
-      <li><a href="mobile.html">Games</a></li>
+      <li><a href="sass.html"><i class="material-icons">video_library</i>Anime</a></li>
+      <li><a href="badges.html"><i class="material-icons">speaker</i>Music</a></li>
+      <li><a href="collapsible.html"><i class="material-icons">books</i>Manga</a></li>
+      <li><a href="mobile.html"><i class="material-icons">games</i>Games</a></li>
+      <li>
+        <% if user_signed_in? %>
+          <li>
+            <a href="" class="dropdown-button" data-activates="dropdown3">
+              <i class="material-icons">keyboard_arrow_down</i><%= current_user.email %>
+            </a>
+          </li>
+          <ul class="dropdown-content gray" id="dropdown3">
+            <li>
+              <%= link_to "Logout" ,destroy_user_session_path , method: :delete %>
+            </li>
+            <li>
+              <%= link_to "Account Settings" ,edit_user_registration_path %>
+            </li>
+          </ul>
+        <% else %>
+          <li>
+            <a href="" class="dropdown-button" data-activates="dropdown3">
+              <i class="material-icons">keyboard_arrow_down</i>Join Us
+            </a>
+          </li>
+          <ul class="dropdown-content gray" id="dropdown3">
+            <li>
+              <%= link_to "Login" ,new_user_session_path %>
+            </li>
+            <li>
+              <%= link_to "Sign Up" ,new_user_registration_path %>
+            </li>
+          </ul>
+        <% end %>
+      </li>
     </ul>
   </div>
 </nav>
