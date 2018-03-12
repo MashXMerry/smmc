@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   }
 	root 'pages#index'
 	
+	#JSON routes
+	get 'users/users_json' , to: 'pages#user_json' 
+
 end
