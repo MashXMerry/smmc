@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
 
+	def index
+		
+	end
+
 	def user_json
 		user = User.all.order('created_at DESC')
 		render :json => { 'data' => user }

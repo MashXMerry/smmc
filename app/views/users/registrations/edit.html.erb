@@ -5,10 +5,23 @@
         <%= devise_error_messages! %>
         <div class="card-content">
           <h2 class="center">Edit <%= resource_name.to_s.humanize %></h2>
+
+          <div class="input-field">
+            <i class="material-icons prefix">mail</i>
+            <%= f.label :firstname, class:"active" %>
+            <%= f.text_field :firstname, autofocus: true %>
+          </div>
+
+          <div class="input-field">
+            <i class="material-icons prefix">mail</i>
+            <%= f.label :lastname, class:"active" %>
+            <%= f.text_field :lastname %>
+          </div>
+
           <div class="input-field">
             <i class="material-icons prefix">mail</i>
             <%= f.label :email, class:"active" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email , autocomplete: "email" %>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
