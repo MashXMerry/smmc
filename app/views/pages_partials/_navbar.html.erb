@@ -54,10 +54,12 @@
             <%= image_tag "sidenav_bg.jpg", style:"width:100%" %>
           </div>
           <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
-          <a href="#!name"><span class="white-text name">
-            <%= current_user.firstname + " " + current_user.lastname %></span></a>
-          <a href="#!email"><span class="white-text email">
-            <%= current_user.email %></span></a>
+          <% if user_signed_in? %>
+            <a href="#!name"><span class="white-text name">
+              <%= current_user.firstname + " " + current_user.lastname %></span></a>
+            <a href="#!email"><span class="white-text email">
+              <%= current_user.email %></span></a>
+          <% end %>
         </div>
       </li>
       <li><a href="#!"><i class="material-icons">cloud</i>Profile</a></li>
