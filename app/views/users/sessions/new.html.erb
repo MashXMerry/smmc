@@ -3,18 +3,18 @@
 <div class="container row">
   <div class="card col s12 m12 l6 offset-l3 session-card">
     <h4 class="center">Login</h4>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name , url: session_path(resource_name)) do |f| %>
       <div class="card-content">
         <div class="input-field">
           <i class="material-icons prefix">mail</i>
           <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" , id: "email-field", required: true  %>
         </div>
 
         <div class="input-field">
           <i class="material-icons prefix">lock</i>
           <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off" , id: "password-field", required: true  %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
@@ -24,9 +24,11 @@
           </div>
         <% end %>
       </div>
-      <div class="card-action">
+      <div class="card-action right-align" id="card-action">
         <div class="actions">
-          <%= f.submit "Log in" , class:"btn blue waves-effect waves-purple green" %>
+          <%= f.submit "Log in" , class:"btn blue waves-effect waves-purple blue" ,
+             data: { disable_with: "Logging in.." } ,
+             id: "login-button" %>
         </div>
       </div>
     <% end %>
@@ -40,5 +42,11 @@
     margin-bottom: 100px;
   }
 </style>
+
+<script>
+  $(document).ready(function() {
+
+  });
+</script>
 
 <%= render 'pages_partials/footer' %>

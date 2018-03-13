@@ -4,13 +4,9 @@
 
 <div class="container center-align" style="margin-top: 100px">
 	<center>
-		<h3>This is my own website #Sumimachine #Soon</h3>
-		<h5>#MashiyyatDelosSantos #Mashuu</h5>
+		<p class="smmc-title">Sumimachine</p>
 	</center>
-
-	<button class="btn waves-effect waves-blue green" id="show-loader">
-		Show Loader
-	</button>
+	<hr>
 
 	<div class="row" style="margin-top: 100px">
 		<div class="col l6 m6 s12">
@@ -81,9 +77,18 @@
 	</div>
 </div>
 
+<div class="fixed-action-btn horizontal">
+  <a class="btn-floating btn-large red waves-effect waves-white" href="#my-navbar">
+    <i class="large material-icons">keyboard_arrow_up</i>
+  </a>
+</div>
+
 <%= render 'pages_partials/footer' %>
 
 <script type="text/javascript">
+		$(document).ready(function(){
+	    $('.scrollspy').scrollSpy();
+	  });
 	// $(document).ready(function() {
 	// 	$('#show-loader').on('click', function() {
 	// 		$('#app').prepend(`
@@ -110,5 +115,9 @@
 		top: 30%;
     position: relative;
     font-size: 200px;
+	}
+	.smmc-title {
+		font-size: 50px;
+		font-family: 'coiny'
 	}
 </style>

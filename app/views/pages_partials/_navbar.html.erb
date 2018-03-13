@@ -1,12 +1,88 @@
-<nav class="purple darken-1">
+<nav class="purple darken-1 scrollspy" id="my-navbar">
   <div class="container nav-wrapper">
     <%= link_to "Sumimachine" , root_path , class:"brand-logo" %>
+
+    <% if user_signed_in? %>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="<%= current_user.firstname %>">
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home">
+            <i class="material-icons">home</i>
+          </a>
+        </li>
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers">
+            <i class="material-icons">insert_emoticon</i>
+          </a>
+        </li>
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
+            <i class="material-icons">person_pin_circle</i>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="dropdown-button" data-activates="dropdown5">
+            <i class="material-icons">more_vert</i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="dropdown-content" id="dropdown5">
+        <li><a href="">Help</a></li>
+        <li><%= link_to "Account settings" , edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
+      </ul>
+    <% end %>
+
   </div>
 </nav>
 
 <nav class="purple lighten-2 my-navbar">
   <div class="container nav-wrapper">
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <% if user_signed_in? %>
+      <ul class="right hide-on-large-only show-on-small">
+        <li class="waves-effect waves-violet">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="<%= current_user.firstname %>">
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
+        <li class="waves-effect waves-violet">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home">
+            <i class="material-icons">home</i>
+          </a>
+        </li>
+        <li class="waves-effect waves-violet">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers">
+            <i class="material-icons">insert_emoticon</i>
+          </a>
+        </li>
+        <li class="waves-effect waves-violet">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
+            <i class="material-icons">person_pin_circle</i>
+          </a>
+        </li>
+        <li>
+          <a href="#!" class="dropdown-button" data-activates="dropdown4">
+            <i class="material-icons">more_vert</i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="dropdown-content" id="dropdown4">
+        <li><a href="">Help</a></li>
+        <li><%= link_to "Account settings" , edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
+      </ul>
+    <% end %>
+    
     <ul class="right hide-on-med-and-down">
       <li><a href="sass.html">Anime</a></li>
       <li><a href="badges.html">Music</a></li>
@@ -18,8 +94,6 @@
       </li>
       <li>
         <% if user_signed_in? %>
-          <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= current_user.firstname %><i class="material-icons right">arrow_drop_down</i>
-          </a>
         <% else %>
           <a class="dropdown-button" href="#!" data-activates="dropdown1">Join Us<i class="material-icons right">arrow_drop_down</i>
           </a>
@@ -39,11 +113,9 @@
     <!-- Join Us -->
     <ul id="dropdown1" class="dropdown-content">
       <% if user_signed_in? %>
-        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
-        <li><%= link_to "Account Settings" , edit_user_registration_path %></li>
       <% else %>
-        <li><%= link_to "Login" ,new_user_session_path %></li>
-        <li><%= link_to "Sign Up" ,new_user_registration_path %></li>
+        <li><%= link_to "Login" ,new_user_session_path, class:"center" %></li>
+        <li><%= link_to "Sign Up" ,new_user_registration_path, class:"center" %></li>
       <% end %>
     </ul>
     <!-- Mobile Side Nav -->
@@ -59,6 +131,8 @@
               <%= current_user.firstname + " " + current_user.lastname %></span></a>
             <a href="#!email"><span class="white-text email">
               <%= current_user.email %></span></a>
+          <% else %>
+            <a href="#!">S U M I M A C H I N E</a>
           <% end %>
         </div>
       </li>
@@ -109,3 +183,9 @@
     $(".button-collapse").sideNav();
   });
 </script>
+
+<style type="text/css">
+  .brand-logo {
+    font-family: 'coiny';
+  }
+</style>
