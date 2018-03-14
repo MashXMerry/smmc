@@ -5,22 +5,22 @@
     <% if user_signed_in? %>
       <ul class="right hide-on-med-and-down">
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="<%= current_user.firstname %>">
+          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'bottom' , 'data-tooltip' => "#{current_user.firstname}", 'data-delay' => '10' do %>
             <i class="material-icons">account_circle</i>
-          </a>
+          <% end %>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home" data-delay="10">
             <i class="material-icons">home</i>
           </a>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers" data-delay="10">
             <i class="material-icons">insert_emoticon</i>
           </a>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications" data-delay="10">
             <i class="material-icons">person_pin_circle</i>
           </a>
         </li>

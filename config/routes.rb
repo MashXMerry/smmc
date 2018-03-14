@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 	
 	#JSON routes
 	get 'users/users_json' , to: 'pages#user_json' 
+	get 'profile' , to: 'pages#profile' , as: 'profile'
 
 end
