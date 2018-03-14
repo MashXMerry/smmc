@@ -1,20 +1,21 @@
 <%= render 'pages_partials/navbar' %>
 
 <div class="div">
-  <div class="row">
-    <div class="col s12 m10 l4 offset-m1" style="margin-top: 150px;">
+  <div class="row" style="padding-top: 150px">
+    <div class="col s12 m10 l4 offset-m1">
       <div class="first-row-content row center-align">
         <%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle center" %><br>
-        <b>Firstname: </b>Mashiyyat<br>
-        <b>Middlename: </b>Villasenor<br>
-        <b>Lastname: </b>Delos Santos<br>
-        <b>Gender: </b>Male<br>
-        <b>Birthday: </b>August 19, 1998<br>
-        <b>Email: </b>delossantos.mash@gmail.com<br>
+        <h5>Current information</h5><hr>
+        <b>Firstname: </b><%= current_user.firstname %><br>
+        <b>Middlename: </b>SOOn<br>
+        <b>Lastname: </b><%= current_user.lastname %><br>
+        <b>Gender: </b>SOOn<br>
+        <b>Birthday: </b>SOON<br>
+        <b>Email: </b><%= current_user.email %><br>
       </div>
     </div>
     <div class="col l8">
-      <div class="second-row-content hide-on-med-and-down left">
+      <div class="second-row-content left">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
           <h4 class="center">Edit <%= resource_name.to_s.humanize %></h4>
@@ -79,7 +80,6 @@
     border-radius: 5px;
   }
   .second-row-content {
-    margin-top: 150px;
     margin-bottom: 100px;
     border: 1px solid #aaaaaa;
     padding: 20px 15px 20px 15px;
