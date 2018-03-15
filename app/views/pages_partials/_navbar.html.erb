@@ -117,22 +117,32 @@
 </nav>
 <!-- Mobile Side Nav -->
 <ul id="slide-out" class="side-nav">
-  <li>
-    <div class="user-view">
-      <div class="background">
-        <%= image_tag "sidenav_bg.jpg", style:"width:100%" %>
+  <% if user_signed_in? %>
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <%= image_tag "sidenav_bg.jpg", style:"width:100%" %>
+        </div>
+        <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
+        <a href="#!name">
+          <span class="white-text name">
+          <%= current_user.firstname + " " + current_user.lastname %>
+          </span>
+        </a>
+        <a href="#!email">
+          <span class="white-text email">
+            <%= current_user.email %>
+          </span>
+        </a>
       </div>
-      <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
-      <% if user_signed_in? %>
-        <a href="#!name"><span class="white-text name">
-          <%= current_user.firstname + " " + current_user.lastname %></span></a>
-        <a href="#!email"><span class="white-text email">
-          <%= current_user.email %></span></a>
-      <% else %>
-        <a href="#!">S U M I M A C H I N E</a>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to root_path do %>
+      Home<i class="material-icons">home</i>
       <% end %>
-    </div>
-  </li>
+    </li>
+  <% end %>
   <li><a href="#"><i class="material-icons">video_library</i>Anime</a></li>
   <li><a href="#"><i class="material-icons">speaker</i>Music</a></li>
   <li><a href="#"><i class="material-icons">books</i>Manga</a></li>
@@ -155,7 +165,7 @@
     <% else %>
       <li>
         <a href="" class="dropdown-button" data-activates="dropdown3">
-          <i class="material-icons">keyboard_arrow_down</i>Join Us
+          <i class="material-icons">unfold_more</i>Join Us
         </a>
       </li>
       <ul class="dropdown-content gray" id="dropdown3">
