@@ -5,8 +5,13 @@
     </a>
     <ul>
       <li>
-        <%= link_to edit_user_registration_path , class:"tooltipped btn-floating green waves-effect waves-blue" , 'data-position' => 'top' , 'data-tooltip' => "Account Settings", 'data-delay' => '10' do %>
-          <i class="material-icons">mode_edit</i>
+        <%= link_to edit_user_registration_path , class:"tooltipped btn-floating green waves-effect waves-blue" , 'data-position' => 'top' , 'data-tooltip' => "Create post", 'data-delay' => '10' do %>
+          <i class="material-icons">create</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to edit_user_registration_path , class:"tooltipped btn-floating yellow waves-effect waves-red" , 'data-position' => 'top' , 'data-tooltip' => "Settings", 'data-delay' => '10' do %>
+          <i class="material-icons">build</i>
         <% end %>
       </li>
       <li>

@@ -1,10 +1,31 @@
 <%= render 'pages_partials/navbar' %>
-
 <div class="div">
+
 	<div class="row">
 		<div class="col s12 m10 l8 offset-m1" style="margin-top: 150px;">
 			<div class="first-row-content" id="post-container">
-				<p class="post-content">
+				<div class="post-content white">
+					<p>
+						Posted at Nov 1, 2018
+						<a href="#" class="option-btn right dropwdown-button" data-activates="dropdownSOME">
+							<i class="material-icons">more_horiz</i>
+						</a>
+						<ul class="dropdown-content" id="dropdownSOME">
+							<li><a href="">LINK</a></li>
+							<li><a href="">LINK</a></li>
+							<li><a href="">LINK</a></li>
+						</ul>
+					</p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<a href="">Read more</a>
+				</div>
+
+				<p class="post-content white">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -13,7 +34,7 @@
 					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</p>
 
-				<p class="post-content">
+				<p class="post-content white">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -22,16 +43,7 @@
 					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</p>
 
-				<p class="post-content">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-
-				<p class="post-content">
+				<p class="post-content white">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -58,12 +70,17 @@
 <%= render 'pages_partials/floating_button' %>
 
 <style type="text/css">	
+	.fullname {
+	}
 	nav {
 		position: fixed!important;
 	}
+	.option-btn {
+		/*position: absolute;*/
+	}
 	.post-content {
 		border: 1px solid #aaaaaa;
-    padding: 20px 15px 20px 15px;
+    padding: 10px 15px 20px 15px;
     border-radius: 5px;
     font-family: Quicksand;
 	}
@@ -77,3 +94,8 @@
 		top: 100%!important;
 	}
 </style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	});
+</script>

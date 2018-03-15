@@ -10,20 +10,29 @@
           <% end %>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home" data-delay="10">
+          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home" data-delay="10">
             <i class="material-icons">home</i>
           </a>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers" data-delay="10">
+          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Followers" data-delay="10">
             <i class="material-icons">insert_emoticon</i>
           </a>
         </li>
         <li>
-          <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications" data-delay="10">
+          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Notifications" data-delay="10">
             <i class="material-icons">person_pin_circle</i>
           </a>
         </li>
+        <li>
+          <a href="" class="dropdown-button" data-activates="dropdownA">
+            <i class="material-icons">more_vert</i>
+          </a>
+        </li>
+        <ul class="dropdown-content" id="dropdownA">
+          <li><%= link_to "Settings", edit_user_registration_path , class:"center" %></li>
+          <li><%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"center" %></li>
+        </ul>
       </ul>
     <% end %>
   </div>
@@ -32,24 +41,24 @@
     <div class="container nav-wrapper">
 
       <% if user_signed_in? %>
-        <ul class="left hide-on-large-only show-on-small">
+        <ul class="right hide-on-large-only show-on-small">
           <li class="waves-effect waves-violet">
-            <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="<%= current_user.firstname %>">
+            <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'bottom' , 'data-tooltip' => "#{current_user.firstname}"  do %>
               <i class="material-icons">account_circle</i>
-            </a>
+            <% end %>
           </li>
           <li class="waves-effect waves-violet">
-            <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Home">
+            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home">
               <i class="material-icons">home</i>
             </a>
           </li>
           <li class="waves-effect waves-violet">
-            <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Followers">
+            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Followers">
               <i class="material-icons">insert_emoticon</i>
             </a>
           </li>
           <li class="waves-effect waves-violet">
-            <a href="sass.html" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
+            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
               <i class="material-icons">person_pin_circle</i>
             </a>
           </li>
@@ -61,8 +70,7 @@
         </ul>
 
         <ul class="dropdown-content" id="dropdown4">
-          <li><a href="">Help</a></li>
-          <li><%= link_to "Account settings" , edit_user_registration_path %></li>
+          <li><%= link_to "Settings" , edit_user_registration_path %></li>
           <li class="divider"></li>
           <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
         </ul>
@@ -125,23 +133,10 @@
       <% end %>
     </div>
   </li>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to profile_path do %>
-        <%= current_user.firstname %><i class="material-icons">account_circle</i>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to edit_user_registration_path do %>
-        Account settings<i class="material-icons">settings</i>
-      <% end %>
-    </li>
-  <% end %>
-  <li><div class="divider"></div></li>
-  <li><a href="sass.html"><i class="material-icons">video_library</i>Anime</a></li>
-  <li><a href="badges.html"><i class="material-icons">speaker</i>Music</a></li>
-  <li><a href="collapsible.html"><i class="material-icons">books</i>Manga</a></li>
-  <li><a href="mobile.html"><i class="material-icons">games</i>Games</a></li>
+  <li><a href="#"><i class="material-icons">video_library</i>Anime</a></li>
+  <li><a href="#"><i class="material-icons">speaker</i>Music</a></li>
+  <li><a href="#"><i class="material-icons">books</i>Manga</a></li>
+  <li><a href="#"><i class="material-icons">games</i>Games</a></li>
   <li>
     <% if user_signed_in? %>
       <li>

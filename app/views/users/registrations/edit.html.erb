@@ -2,7 +2,7 @@
 
 <div class="div">
   <div class="row" style="padding-top: 150px">
-    <div class="col s12 m10 l4 offset-m1">
+    <div class="col s12 m10 l4 offset-m1 hide-on-med-and-down">
       <div class="first-row-content row center-align">
         <%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle center" %><br>
         <h5>Current information</h5><hr>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="col l8">
-      <div class="second-row-content left">
+      <div class="second-row-content left white">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
           <h4 class="center">Edit <%= resource_name.to_s.humanize %></h4>
