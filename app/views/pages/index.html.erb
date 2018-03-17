@@ -77,11 +77,12 @@
 
 <script type="text/javascript">
 	// $(document).ready(function() {
-	// 	$('#show-loader').on('click', function() {
+	// 	$('#logout').on('click', function() {
 	// 		$('#app').prepend(`
 	// 				<div class="loader">
-	// 					<i class="fa fa-spinner fa-pulse fa-3x fa-fw loader-font"></i>
-	// 					<span class="sr-only">Loading...</span>
+	// 					<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw loader-font"></i>
+	// 					<br>
+	// 					<span class="sr-only logout-font">Loging out ..</span>
 	// 				</div>
 	// 			`);
 	// 		$('#show-loader').hide();
@@ -91,6 +92,7 @@
 
 <style>
 	.loader {
+		background-color: #0000005c;
 		position: fixed;
     top: 0%;
     height: 100%;
@@ -103,6 +105,13 @@
     position: relative;
     font-size: 200px;
 	}
+
+	.logout-font {
+		top: 30%;
+    position: relative;
+    font-size: 50px;
+	}
+
 	.smmc-title {
 		font-size: 50px;
 		font-family: 'coiny'

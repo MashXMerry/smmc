@@ -5,7 +5,7 @@
   		<i class="material-icons prefix">create</i>
   		<label>Add bio</label>
       <% if @bio.blank? %>
-        <%= f.text_field :bio, autofocus: true %>
+        <%= f.text_field :bio, autofocus: true , required: true %>
       <% else %>
         <%= f.text_field :bio , value: current_user.bio, autofocus: true %>
       <% end %>
@@ -13,6 +13,7 @@
   </div>
   <div class="modal-footer">
   	<a class="modal-action modal-close waves-effect waves-yellow btn-flat red white-text">Cancel</a>
-  	<%= f.submit "Save" , class: "modal-action waves-effect waves-blue btn-flat green white-text" %>
+  	<%= f.submit "Save" , class: "modal-action waves-effect waves-blue btn-flat green white-text" , 
+      data: { disable_with: "Updating bio .." } %>
   </div>
 <% end %>

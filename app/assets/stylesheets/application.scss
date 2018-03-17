@@ -17,6 +17,42 @@
  @import "materialize";
  @import "font-awesome";
 
+.input-field label {
+   color: #ba68c8 !important;
+ }
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+   color: #ba68c8 !important;
+ }
+ /* label underline focus color */
+ .input-field input[type=text]:focus {
+   border-bottom: 1px solid #ba68c8 !important;
+   box-shadow: 0 1px 0 0 #ba68c8 !important;
+ }
+ /* valid color */
+ .input-field input[type=text].valid {
+   border-bottom: 1px solid #ba68c8 !important;
+   box-shadow: 0 1px 0 0 #ba68c8 !important
+ }
+ /* invalid color */
+ .input-field input[type=text].invalid {
+   border-bottom: 1px solid #ba68c8 !important;
+   box-shadow: 0 1px 0 0 #ba68c8 !important;
+ }
+ /* icon prefix focus color */
+ .input-field .prefix.active {
+   color: #ba68c8 !important;
+ }
+
+.input-field input:focus + label {
+   color: #ba68c8 !important;
+ }
+ /* label underline focus color */
+ .row .input-field input:focus {
+   border-bottom: 1px solid #ba68c8 !important;
+   box-shadow: 0 1px 0 0 #ba68c8 !important
+ } 
+
  .page-footer {
  		padding-top: 20px;
     position: absolute;

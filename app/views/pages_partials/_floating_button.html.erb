@@ -15,7 +15,7 @@
         <% end %>
       </li>
       <li>
-        <%= link_to destroy_user_session_path , method: :delete , class:"tooltipped btn-floating red waves-effect waves-yellow" , 'data-position' => 'top' , 'data-tooltip' => "Logout", 'data-delay' => '10' , data: { confirm: "Are you sure to logout?" } do %>
+        <%= link_to destroy_user_session_path , method: :delete , class:"tooltipped btn-floating red waves-effect waves-yellow" , 'data-position' => 'top' , 'data-tooltip' => "Logout", 'data-delay' => '10' , id: "logout" , data: { confirm: "Are you sure?" } do %>
           <i class="material-icons">power_settings_new</i>
         <% end %>
       </li>

@@ -6,13 +6,13 @@
     <%= form_for(resource, as: resource_name , url: session_path(resource_name)) do |f| %>
       <div class="card-content">
         <div class="input-field">
-          <i class="material-icons prefix">mail</i>
+          <i class="material-icons prefix purple-text">mail</i>
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" , id: "email-field", required: true  %>
         </div>
 
         <div class="input-field">
-          <i class="material-icons prefix">lock</i>
+          <i class="material-icons prefix purple-text">lock</i>
           <%= f.label :password %>
           <%= f.password_field :password, autocomplete: "off" , id: "password-field", required: true  %>
         </div>

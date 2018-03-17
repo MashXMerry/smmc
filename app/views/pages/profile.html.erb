@@ -1,10 +1,10 @@
 <%= render 'pages_partials/navbar' %>
 	<% if @bio.blank? %>
-		<div id="modal-update-bio" class="modal">
+		<div id="modal-update-bio" class="modal bottom-sheet">
 			<%= render 'form_bio' %>
 		</div>
 	<% else %>
-		<div id="modal-update-bio" class="modal">
+		<div id="modal-update-bio" class="modal bottom-sheet">
 			<%= render 'form_bio' %>
 		</div>
 	<% end %>
@@ -109,7 +109,7 @@
 							<% if @bio.blank? %>
 								<a class="modal-trigger" href="#modal-update-bio">Add bio</a>
 							<% else %>
-								<i><b><%= @bio %></b></i>
+								<i><b class="purple-text"><%= truncate(@bio, length: 200) %></b></i>
 								<center>
 									<a class="modal-trigger tooltipped" href="#modal-update-bio" data-position="bottom" data-tooltip="Edit bio">
 										<i class="material-icons green-text">create</i>
@@ -156,7 +156,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
   });
 </script>
