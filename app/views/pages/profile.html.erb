@@ -103,11 +103,15 @@
 			<div class="second-row-content hide-on-med-and-down pinned left" style="margin-top: 150px;">
 				<div class="card center-align">
 					<div class="card-content">
-						<%= image_tag "avatar.jpg" , style:"width:30%" , class:"circle" %>
+						<%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle" %>
+						<center><strong><%= @username %></strong></center>
 						<p class="user-fullname"><%= @fullname %></p>
+						<hr>
 						<p id="bio">
 							<% if @bio.blank? %>
-								<a class="modal-trigger" href="#modal-update-bio">Add bio</a>
+								<a class="modal-trigger green-text" href="#modal-update-bio">
+									Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
 							<% else %>
 								<i><b class="purple-text"><%= truncate(@bio, length: 200) %></b></i>
 								<center>

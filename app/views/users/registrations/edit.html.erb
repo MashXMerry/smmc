@@ -7,7 +7,7 @@
         <%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle center" %><br>
         <h5>Current information</h5><hr>
         <b>Firstname: </b><%= current_user.firstname %><br>
-        <b>Middlename: </b>SOOn<br>
+        <b>Middlename: </b><%= current_user.middlename %><br>
         <b>Lastname: </b><%= current_user.lastname %><br>
         <b>Gender: </b>SOOn<br>
         <b>Birthday: </b>SOON<br>
@@ -45,7 +45,13 @@
 
           <div class="input-field col s12">
             <i class="material-icons prefix">create</i>
-            <%= f.text_area :bio , autocomplete: "email" , class:"materialize-textarea" , 'data-length' => '50' %>
+            <%= f.label :username, class:"active" %>
+            <%= f.text_field :username %>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">create</i>
+            <%= f.text_area :bio , autocomplete: "email" , class:"materialize-textarea" , 'data-length' => '70' %>
             <%= f.label :bio, class:"active" %>
           </div>
 

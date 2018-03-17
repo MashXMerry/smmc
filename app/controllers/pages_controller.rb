@@ -24,6 +24,12 @@ class PagesController < ApplicationController
 			else
 				@fullname = profile.firstname + " " + profile.middlename + " " + profile.lastname	
 			end
+
+			if current_user.username.blank?
+				@username = ""
+			else
+				@username = "("+ current_user.username + ")"	
+			end
 		end	
 	end
 
