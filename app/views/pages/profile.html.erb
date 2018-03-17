@@ -4,11 +4,12 @@
 			<%= render 'form_bio' %>
 		</div>
 	<% else %>
-		<!-- some codes here -->
+		<div id="modal-update-bio" class="modal">
+			<%= render 'form_bio' %>
+		</div>
 	<% end %>
 
 <div class="div">
-
 	<div class="row">
 		<div class="col s12 m10 l8 offset-m1" style="margin-top: 150px;">
 		  <!-- Dropdown Structure -->
@@ -109,6 +110,11 @@
 								<a class="modal-trigger" href="#modal-update-bio">Add bio</a>
 							<% else %>
 								<i><b><%= @bio %></b></i>
+								<center>
+									<a class="modal-trigger tooltipped" href="#modal-update-bio" data-position="bottom" data-tooltip="Edit bio">
+										<i class="material-icons green-text">create</i>
+									</a>
+								</center>
 							<% end %>
 						</p>
 						<p class="green-text"><%= notice %></p>
