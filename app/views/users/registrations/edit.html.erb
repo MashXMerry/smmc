@@ -43,6 +43,12 @@
             <%= f.email_field :email , autocomplete: "email" %>
           </div>
 
+          <div class="input-field col s12">
+            <i class="material-icons prefix">create</i>
+            <%= f.text_area :bio , autocomplete: "email" , class:"materialize-textarea" , 'data-length' => '50' %>
+            <%= f.label :bio, class:"active" %>
+          </div>
+
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
@@ -63,7 +69,7 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">lock</i>
             <label>Current password(we need your current password to confirm your changes)</label>
-            <%= f.password_field :current_password, autocomplete: "off" %>
+            <%= f.password_field :current_password, autocomplete: "off" , required: true %>
           </div>  
           <div class="actions col s12">
             <%= f.submit "Update" , class:"btn waves-effect green waves-blue" , data: { :disable_with => "Updating profile.." } %>

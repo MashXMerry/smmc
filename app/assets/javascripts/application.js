@@ -17,6 +17,19 @@
 
 $(document).ready(function() {
 
+	$('#save-bio').on('click', function() {
+		var bioData = $('#add-bio').val();
+		console.log("Success update");
+		$.ajax({
+			url: 'http://localhost:3000/user/update-bio/<%= current_user.id %>',
+			method: 'put',
+			data: { bio : bioData } , 
+			success: function() {
+				console.log("Success update");
+			}
+		});
+	});
+
 	$('.dropdown-button').dropdown({
 	    inDuration: 300,
 	    outDuration: 225,
@@ -28,5 +41,4 @@ $(document).ready(function() {
 	    stopPropagation: false // Stops event propagation
 	  }
 	);
-
 });

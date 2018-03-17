@@ -14,7 +14,6 @@ class PagesController < ApplicationController
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
-		@bio = User.select(:bio).where(:id => @id)
 		
 		@profile.each do |profile|
 			@firstname = profile.firstname
@@ -30,11 +29,29 @@ class PagesController < ApplicationController
 
 	def updateBio
 		@user = User.find(params[:id])
-		# @user.update(:bio => "Sample Bio")
-		bio = params[:bio]
-		@user.update_attribute(:bio , bio)
-		@user.save
-		redirect_to profile_path
+		@user.update(bio_params)
+		respond_to do |format|
+			if @user.save
+				format.html { redirect_to profile_path }
+				# format.js
+			end
+		end	
 	end
+
+	def bio_json
+    userid = User.find(params[:id])
+    bio = User.select(:bio).where(:id => userid)
+    render :json => { "data" => bio }
+  end
+
+  protected
+
+  # def user_params
+  # 	params.require(:user).permit(:firstname, :middlename, :lastname, :bio, :email)
+  # end
+	
+	def bio_params
+	  params.require(:user).permit(:bio)
+	end  
 
 end

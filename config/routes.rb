@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 	
 	#JSON routes
 	get 'users/users_json' , to: 'pages#user_json' 
+	get 'user/user_bio/:id' , to: 'pages#bio_json'
+
+
+	#CUSTOM ROUTES
 	get 'profile' , to: 'pages#profile' , as: 'profile'
 	put '/user/update-bio/:id' , to: 'pages#updateBio' , as: 'update_bio'
 
