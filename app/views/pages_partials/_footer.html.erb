@@ -22,7 +22,7 @@
     <% if user_signed_in? %>
       <%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"grey-text text-lighten-4 right" %>
     <% else %>
-      <a class="grey-text text-lighten-4 right" href="#!">Join Us</a>
+      <%= link_to "Join us" , new_user_session_path , class:"grey-text text-lighten-4 right" %>
     <% end %>
     </div>
   </div>
