@@ -1,105 +1,17 @@
 <%= render 'pages_partials/navbar' %>
 <%= render 'pages_partials/slider' %>
 
-<div class="container" style="margin-top: 200px;padding-bottom: 200px">	
+<div class="container" style="margin-top: 150px">	
 	<div class="row">
 		<p class="header-title"><a href="">Trending</a></p>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "1.jpg" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Anime</div>
-				<p class="content-title">Tokyo Ghoul</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Shitty</a></small> | 
-						<small><a href="#">Ghoul</a></small> | 
-						<small><a href="#">Season 3</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "2.png" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Anime</div>
-				<p class="content-title">Boku no Hero Academia</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Shitty</a></small> | 
-						<small><a href="#">Ghoul</a></small> | 
-						<small><a href="#">Season 3</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "3.png" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Game</div>
-				<p class="content-title">Fate/Grand Order</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Shitty</a></small> | 
-						<small><a href="#">Ghoul</a></small> | 
-						<small><a href="#">Season 3</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "4.jpg" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Anime</div>
-				<p class="content-title">Tokyo Ghoul</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Shitty</a></small> | 
-						<small><a href="#">Ghoul</a></small> | 
-						<small><a href="#">Season 3</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "1.jpg" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Anime</div>
-				<p class="content-title">Tokyo Ghoul</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Shitty</a></small> | 
-						<small><a href="#">Ghoul</a></small> | 
-						<small><a href="#">Season 3</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col s12 m6 l4">
-			<div class="content-body">
-				<%= image_tag "2.png" , class:"materialboxed" , class:"image-idex" %>
-				<div class="content-category">Anime</div>
-				<p class="content-title">Boku no Hero Academia</p>
-				<div class="small">
-					<small>Jan 6, 2018</small>	
-					<div class="content-tags purple-text">
-						<small><a href="#">Anime</a></small> | 
-						<small><a href="#">Recommended</a></small> | 
-						<small><a href="#">All might</a></small> | 
-						<small><a href="#">Plus ULTRA</a></small> | 
-					</div>
-				</div>
-			</div>
-		</div>
+		<%= render 'pages_partials/contents/content' %>
+	</div>
+</div>
+
+<div class="container" style="padding-bottom: 150px">	
+	<div class="row">
+		<p class="header-title"><a href="">Anime</a></p>
+		<%= render 'pages_partials/contents/content' %>
 	</div>
 </div>
 

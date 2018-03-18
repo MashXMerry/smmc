@@ -1,32 +1,45 @@
-<div class="slider">
+<div class="slider hide-on-small-only">
   <ul class="slides">
     <li>
-      <%= image_tag "cover.png" %>
+      <%= image_tag "cover.png" , style:"width:100%" %>
       <div class="caption center-align">
-        <h3>This is our big Tagline!</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        <h3 class="font-title">Welcome to Sumimachine</h3>
+        <h5 class="light grey-text text-lighten-3 font-title">We are community here.</h5>
       </div>
     </li>
     <li>
-      <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
+     <%= image_tag "cover3.jpg" , style:"width:100%" %>
       <div class="caption left-align">
-        <h3>Left Aligned Caption</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        <h3 class="font-title">Weabs everwhere</h3>
+        <h5 class="light grey-text text-lighten-3 font-title">It is Nonstop !!!</h5>
       </div>
     </li>
     <li>
-      <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+      <%= image_tag "cover2.png" , style:"width:100%" %>
       <div class="caption right-align">
-        <h3>Right Aligned Caption</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        <h3 class="font-title">Sumimachine</h3>
+        <h5 class="light grey-text text-lighten-3 font-title">C A N C E R !!!.</h5>
       </div>
     </li>
     <li>
-      <img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
+      <%= image_tag "cover4.jpg" , style:"width:100%" %>
       <div class="caption center-align">
-        <h3>This is our big Tagline!</h3>
-        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        <h3 class="font-title">Share and Join US now !!!</h3>
+        <h5 class="light grey-text text-lighten-3 font-title">HAHAHAHHAHA.</h5>
       </div>
     </li>
   </ul>
 </div>
+
+<style>
+  .font-title {
+    text-shadow: 3px 0px 20px #000000;
+    color: white;
+  }
+</style>
+
+<script>
+  $(document).ready(function(){
+    $('.slider').slider();
+  });
+</script>

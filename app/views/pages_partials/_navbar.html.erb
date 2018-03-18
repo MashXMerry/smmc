@@ -1,4 +1,4 @@
-<nav class="purple darken-1" id="my-navbar">
+<nav class="purple darken-1" id="my-navbar" style="margin-bottom: 60px;">
   <div class="container nav-wrapper">
     <%= link_to "Sumimachine" , root_path , class:"brand-logo" %>
     <a href="#" data-activates="slide-out" class="button-collapse show-on-small hide-on-large-only"><i class="material-icons">menu</i></a>
@@ -75,7 +75,7 @@
         </ul>
       <% end %>
       
-      <ul class="left hide-on-med-and-down">
+      <ul class="left hide-on-small-only">
         <li><%= link_to "Home" , root_path %></li>
         <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Anime</a></li>
         <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Music</a></li>
