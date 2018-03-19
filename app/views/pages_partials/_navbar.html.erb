@@ -10,6 +10,11 @@
           <% end %>
         </li>
         <li>
+          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Messages" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
+            <i class="material-icons">messages</i>
+          </a>
+        </li>
+        <li>
           <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
             <i class="material-icons">home</i>
           </a>
@@ -45,6 +50,11 @@
             <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'bottom' , 'data-tooltip' => "#{current_user.firstname}"  do %>
               <i class="material-icons">account_circle</i>
             <% end %>
+          </li>
+          <li class="waves-effect waves-violet">
+            <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Messages">
+              <i class="material-icons">messages</i>
+            </a>
           </li>
           <li class="waves-effect waves-violet">
             <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home">
