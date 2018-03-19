@@ -1,0 +1,166 @@
+<%= render 'pages_partials/navbar' %>
+	<% if @bio.blank? %>
+		<div id="modal-update-bio" class="modal bottom-sheet">
+			<%= render 'form_bio' %>
+		</div>
+	<% else %>
+		<div id="modal-update-bio" class="modal bottom-sheet">
+			<%= render 'form_bio' %>
+		</div>
+	<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 m10 l8 offset-m1" style="margin-top: 150px;">
+		  <!-- Dropdown Structure -->
+		  <%= image_tag "1.jpg" , style:"width:100%;" %>
+			<div class="first-row-content" id="post-container">
+				<div class="post-content white">
+					<p>
+						Posted at Nov 1, 2018
+						<a class='dropdown-button right black-text' href='#' data-activates='dropdown5'>
+							<i class="material-icons">more_horiz</i>
+						</a>
+						<ul id='dropdown5' class='dropdown-content'>
+					    <li><a href="#!">Edit</a></li>
+					    <li><a href="#!">Delete</a></li>
+					    <li><a href="#!">Share</a></li>
+					  </ul>
+					</p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<a href="">Read more</a>
+				</div>
+
+				<div class="post-content white">
+					<p>
+						Posted at Nov 1, 2018
+						<a class='dropdown-button right black-text' href='#' data-activates='dropdown6'>
+							<i class="material-icons">more_horiz</i>
+						</a>
+						<ul id='dropdown6' class='dropdown-content'>
+					    <li><a href="#!">Edit</a></li>
+					    <li><a href="#!">Delete</a></li>
+					    <li><a href="#!">Share</a></li>
+					  </ul>
+					</p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<a href="">Read more</a>
+				</div>
+
+				<div class="post-content white">
+					<p>
+						Posted at Nov 1, 2018
+						<a class='dropdown-button right black-text' href='#' data-activates='dropdown7'>
+							<i class="material-icons">more_horiz</i>
+						</a>
+						<ul id='dropdown7' class='dropdown-content'>
+					    <li><a href="#!">Edit</a></li>
+					    <li><a href="#!">Delete</a></li>
+					    <li><a href="#!">Share</a></li>
+					  </ul>
+					</p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<a href="">Read more</a>
+				</div>
+
+				<div class="post-content white">
+					<p>
+						Posted at Nov 1, 2018
+						<a class='dropdown-button right black-text' href='#' data-activates='dropdown8'>
+							<i class="material-icons">more_horiz</i>
+						</a>
+						<ul id='dropdown8' class='dropdown-content'>
+					    <li><a href="#!">Edit</a></li>
+					    <li><a href="#!">Delete</a></li>
+					    <li><a href="#!">Share</a></li>
+					  </ul>
+					</p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<a href="">Read more</a>
+				</div>
+			</div>
+		</div>
+		<div class="col l4">
+			<div class="second-row-content hide-on-med-and-down pinned left" style="margin-top: 150px;">
+				<div class="card center-align">
+					<div class="card-content">
+						<%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle" %>
+						<center><strong><%= @username %></strong></center>
+						<p class="user-fullname"><%= @fullname %></p>
+						<hr>
+						<p id="bio">
+							<% if @bio.blank? %>
+								<a class="modal-trigger green-text" href="#modal-update-bio">
+									Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+							<% else %>
+								<i><b class="purple-text"><%= truncate(@bio, length: 200) %></b></i>
+								<center>
+									<a class="modal-trigger tooltipped" href="#modal-update-bio" data-position="bottom" data-tooltip="Edit bio">
+										<i class="material-icons green-text">create</i>
+									</a>
+								</center>
+							<% end %>
+						</p>
+						<p class="green-text"><%= notice %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render 'pages_partials/floating_button' %>
+
+<style type="text/css">	
+	.fullname {
+	}
+	nav {
+		position: fixed!important;
+	}
+	.option-btn {
+		/*position: absolute;*/
+	}
+	.post-content {
+		border: 1px solid #aaaaaa;
+    padding: 10px 15px 20px 15px;
+    border-radius: 5px;
+    font-family: Quicksand;
+    margin-bottom: 10px;
+	}
+	.user-fullname {
+		font-size: 30px;
+		margin-left: 20px;
+		font-family: 'Quicksand';
+	}
+	footer {
+		position: absolute!important;
+		top: 100%!important;
+	}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>

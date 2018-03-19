@@ -5,9 +5,9 @@
     </a>
     <ul>
       <li>
-        <%= link_to edit_user_registration_path , class:"tooltipped btn-floating green waves-effect waves-blue" , 'data-position' => 'top' , 'data-tooltip' => "Create post", 'data-delay' => '10' do %>
-          <i class="material-icons">create</i>
-        <% end %>
+         <a class="tooltipped btn-floating green waves-effect modal-trigger" href="#modal-create-post" data-tooltip="Create post" data-position="top" data-delay="10">
+           <i class="material-icons">create</i>
+         </a>
       </li>
       <li>
         <%= link_to edit_user_registration_path , class:"tooltipped btn-floating yellow waves-effect waves-red" , 'data-position' => 'top' , 'data-tooltip' => "Settings", 'data-delay' => '10' do %>

@@ -1,4 +1,17 @@
 <%= render 'pages_partials/navbar' %>
+
+<div id="modal-create-post" class="modal bottom-sheet">
+  <div class="modal-content">
+  	<div class="input-container">
+  		<textarea class="post-input" placeholder="Post something ..."></textarea>
+  	</div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-yellow btn-flat red">Close</a>
+    <a class="modal-action modal-close waves-effect waves-blue btn-flat green">Create</a>
+  </div>
+</div>
+
 	<% if @bio.blank? %>
 		<div id="modal-update-bio" class="modal bottom-sheet">
 			<%= render 'form_bio' %>
@@ -8,99 +21,15 @@
 			<%= render 'form_bio' %>
 		</div>
 	<% end %>
-
-<div class="div">
-	<div class="row">
-		<div class="col s12 m10 l8 offset-m1" style="margin-top: 150px;">
-		  <!-- Dropdown Structure -->
-			<div class="first-row-content" id="post-container">
-				<div class="post-content white">
-					<p>
-						Posted at Nov 1, 2018
-						<a class='dropdown-button right black-text' href='#' data-activates='dropdown5'>
-							<i class="material-icons">more_horiz</i>
-						</a>
-						<ul id='dropdown5' class='dropdown-content'>
-					    <li><a href="#!">Edit</a></li>
-					    <li><a href="#!">Delete</a></li>
-					    <li><a href="#!">Share</a></li>
-					  </ul>
-					</p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					<a href="">Read more</a>
-				</div>
-
-				<div class="post-content white">
-					<p>
-						Posted at Nov 1, 2018
-						<a class='dropdown-button right black-text' href='#' data-activates='dropdown6'>
-							<i class="material-icons">more_horiz</i>
-						</a>
-						<ul id='dropdown6' class='dropdown-content'>
-					    <li><a href="#!">Edit</a></li>
-					    <li><a href="#!">Delete</a></li>
-					    <li><a href="#!">Share</a></li>
-					  </ul>
-					</p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					<a href="">Read more</a>
-				</div>
-
-				<div class="post-content white">
-					<p>
-						Posted at Nov 1, 2018
-						<a class='dropdown-button right black-text' href='#' data-activates='dropdown7'>
-							<i class="material-icons">more_horiz</i>
-						</a>
-						<ul id='dropdown7' class='dropdown-content'>
-					    <li><a href="#!">Edit</a></li>
-					    <li><a href="#!">Delete</a></li>
-					    <li><a href="#!">Share</a></li>
-					  </ul>
-					</p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					<a href="">Read more</a>
-				</div>
-
-				<div class="post-content white">
-					<p>
-						Posted at Nov 1, 2018
-						<a class='dropdown-button right black-text' href='#' data-activates='dropdown8'>
-							<i class="material-icons">more_horiz</i>
-						</a>
-						<ul id='dropdown8' class='dropdown-content'>
-					    <li><a href="#!">Edit</a></li>
-					    <li><a href="#!">Delete</a></li>
-					    <li><a href="#!">Share</a></li>
-					  </ul>
-					</p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					<a href="">Read more</a>
-				</div>
-			</div>
+<div class="container">
+	<div class="row post-content-container">
+		<div class="col s12 m10 l8 offset-m1">
+			<% 10.times { -%>
+				<%= render 'content_partials/post' %>
+			<% } -%>
 		</div>
 		<div class="col l4">
-			<div class="second-row-content hide-on-med-and-down pinned left" style="margin-top: 150px;">
+			<div class="second-row-content hide-on-med-and-down left">
 				<div class="card center-align">
 					<div class="card-content">
 						<%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle" %>
@@ -121,7 +50,6 @@
 								</center>
 							<% end %>
 						</p>
-						<p class="green-text"><%= notice %></p>
 					</div>
 				</div>
 			</div>
@@ -132,23 +60,30 @@
 <%= render 'pages_partials/floating_button' %>
 
 <style type="text/css">	
-	.fullname {
+	.input-container {
+		height: 200px;
 	}
-	nav {
-		position: fixed!important;
+	.modal.bottom-sheet {
+		 max-height: 50%!important;
 	}
-	.option-btn {
-		/*position: absolute;*/
+	.post-input {
+		resize: none;
+		width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    height: 100%;
+	}
+	.post-content-container {
+		margin-top: 100px;
 	}
 	.post-content {
-		border: 1px solid #aaaaaa;
+		box-shadow: 0px 1px 3px #c4c4c4;
     padding: 10px 15px 20px 15px;
     border-radius: 5px;
     font-family: Quicksand;
     margin-bottom: 10px;
 	}
 	.user-fullname {
-		font-size: 30px;
+		font-size: 20px;
 		margin-left: 20px;
 		font-family: 'Quicksand';
 	}
