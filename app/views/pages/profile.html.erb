@@ -14,11 +14,11 @@
 
 	<% if @bio.blank? %>
 		<div id="modal-update-bio" class="modal bottom-sheet">
-			<%= render 'form_bio' %>
+			<%= render 'form_partials/form_bio' %>
 		</div>
 	<% else %>
 		<div id="modal-update-bio" class="modal bottom-sheet">
-			<%= render 'form_bio' %>
+			<%= render 'form_partials/form_bio' %>
 		</div>
 	<% end %>
 <div class="container">
@@ -67,9 +67,6 @@
 	.input-container {
 		height: 200px;
 	}
-	.modal.bottom-sheet {
-		 max-height: 50%!important;
-	}
 	.post-input {
 		resize: none;
 		width: 100%;
@@ -96,9 +93,3 @@
 		top: 100%!important;
 	}
 </style>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-    $('.modal').modal();
-  });
-</script>
