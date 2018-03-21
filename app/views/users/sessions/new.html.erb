@@ -44,4 +44,22 @@
 </style>
 
 
+<script>
+  $(document).ready(function() {
+      $('#login-button').on('click', function() {
+        if ($('#email-field').val() == "") {
+          Materalize.toast("Email required", 1000);
+        }else if ($('#password-field').val() == "") {
+          Materalize.toast("Password required");
+        }else {
+          $('#card-action').prepend(`
+              <div class="progress purple">
+                <div class="indeterminate"></div>
+              </div>
+            `);
+        }
+      });
+  });
+</script>
+
 <%= render 'pages_partials/footer' %>

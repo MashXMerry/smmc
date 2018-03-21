@@ -16,21 +16,6 @@
 //= require_tree .
 
 $(document).ready(function() {
-	
-	// Login effects
-	// $('#login-button').on('click', function() {
- //    if ($('#email-field').val() == "") {
- //      Materalize.toast("Email required", 1000);
- //    }else if ($('#password-field').val() == "") {
- //      Materalize.toast("Password required");
- //    }else {
- //      $('#card-action').prepend(`
- //          <div class="progress purple">
- //            <div class="indeterminate"></div>
- //          </div>
- //        `);
- //    }
- //  });
 	// MaterializeCSS Initializations
 	$('.slider').slider();
 	$(".button-collapse").sideNav();
