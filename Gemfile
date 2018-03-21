@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # GEMS USED/DOWNLOADED
-
+gem 'tinymce-rails'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'cancancan', '~> 2.0'
 gem 'pg', '~> 0.18.4'

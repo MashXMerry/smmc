@@ -7,13 +7,13 @@
       <div class="card-content">
         <div class="input-field">
           <i class="material-icons prefix purple-text">mail</i>
-          <%= f.label :email %>
+          <%= f.label :email, required:true %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" , id: "email-field", required: true  %>
         </div>
 
         <div class="input-field">
           <i class="material-icons prefix purple-text">lock</i>
-          <%= f.label :password %>
+          <%= f.label :password, required:true %>
           <%= f.password_field :password, autocomplete: "off" , id: "password-field", required: true  %>
         </div>
 
@@ -26,7 +26,7 @@
       </div>
       <div class="card-action right-align" id="card-action">
         <div class="actions">
-          <%= f.submit "Log in" , class:"btn blue waves-effect waves-purple blue" ,
+          <%= f.submit "Log in" , class:"btn waves-effect waves-yellow purple" ,
              data: { disable_with: "Logging in.." } ,
              id: "login-button" %>
         </div>
@@ -43,10 +43,5 @@
   }
 </style>
 
-<script>
-  $(document).ready(function() {
-
-  });
-</script>
 
 <%= render 'pages_partials/footer' %>
