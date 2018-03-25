@@ -1,7 +1,16 @@
-<%= render 'pages_partials/navbar' %>
+<% if user_signed_in? %>
+  <%= render 'pages_partials/navbar1' %>
+<% else %>
+  <%= render 'pages_partials/navbar2' %>
+<% end %>
 
-<div class="container row center-align">
-  <div class="card col l6 s12 offset-l3 registration-card">
+<div class="container row" style="margin-top: 150px;margin-bottom: 150px">
+  <div class="col l6 hide-on-med-and-down">
+    <div class="row1">
+      <%= image_tag "master.png" %>
+    </div>
+  </div>
+  <div class="card col l6 s12">
     <h4 class="center">Sign Up</h4>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
@@ -9,34 +18,34 @@
         <div class="input-field">
           <i class="material-icons prefix">person</i>
           <%= f.label :firstname %>
-          <%= f.text_field :firstname, autofocus: true %>
+          <%= f.text_field :firstname, autofocus: true, required: true %>
         </div>
         <div class="input-field">
           <i class="material-icons prefix">person</i>
           <%= f.label :lastname %>
-          <%= f.text_field :lastname %>
+          <%= f.text_field :lastname, required: true %>
         </div>
         <div class="input-field">
           <i class="material-icons prefix">mail</i>
           <%= f.label :email %>
-          <%= f.email_field :email, autocomplete: "email" %>
+          <%= f.email_field :email, autocomplete: "email", required: true %>
         </div>
         <div class="input-field">
           <i class="material-icons prefix">lock</i>
           <%= f.label :password %>
           <% if @minimum_password_length %>
           <% end %>
-          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off", required: true %>
         </div>
         <div class="input-field">
           <i class="material-icons prefix">lock</i>
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
         </div>  
       </div>
-      <div class="card-action">
+      <div class="card-action notices">
         <div class="actions">
-          <%= f.submit "Sign up" , class:"btn waves-effect waves-blue purlple darken-1" %>
+          <%= f.submit "Sign up" , class:"btn waves-effect waves-blue purple darken-1" , id: "signup-btn" , data: { :disable_with => "Creating account.." } %>
         </div>
       </div>
     <% end %> 

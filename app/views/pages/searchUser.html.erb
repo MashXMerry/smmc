@@ -1,0 +1,53 @@
+<%= render 'pages_partials/navbar1' %>
+
+<div class="container">
+	<div class="row" style="margin-top: 100px;margin-bottom: 100px">
+		<div class="col s12 m8 l8 offset-l2 offset-m2">
+			<% if @user.empty? %>
+				<center><h3>No Username found</h3></center>
+			<% else %>
+				<ul class="collection">
+					<% @user.each do |user| %>
+						<li class="collection-item avatar">
+				      <%= image_tag "avatar.jpg" , class:"circle" %>
+				      <% if user.id == current_user.id %>
+				      	<p class="fullname">
+				      		<%= link_to user.firstname + " " + user.lastname , profile_path , class:"black-text" %>
+				      		(You)
+					      </p>
+				      <% else %>
+				      	<p class="fullname">
+					      	<a href="" class="black-text"><%= user.firstname + " " + user.lastname %></a>
+					      	<% if user.username.blank? %>
+					      	<% else %>
+					      		(<%= user.username %>)
+					      	<% end %>
+					      </p>
+				      <% end %>
+				      <p class="email"><%= user.email %></p>
+				      <a href="#!" class="secondary-content tooltipped" data-position="top" data-tooltip="Friend" data-delay="5">
+				      	<i class="material-icons">sentiment_very_satisfied</i>
+				      </a>
+				    </li>
+					<% end %>
+			  </ul>
+			<% end %>	
+		</div>
+	</div>	
+</div>
+
+<%= render 'pages_partials/floating_button' %>
+
+<style>
+	.fullname {
+		font-family: Quicksand;
+		font-size:20px;
+		padding-top: 5px;
+	}
+	.email {
+		font-family: Quicksand;
+		font-size:15px;
+	}
+</style>
+
+

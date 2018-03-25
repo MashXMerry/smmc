@@ -1,4 +1,8 @@
-<%= render 'pages_partials/navbar' %>
+<% if user_signed_in? %>
+  <%= render 'pages_partials/navbar1' %>
+<% else %>
+  <%= render 'pages_partials/navbar2' %>
+<% end %>
 
 <div class="container row">
   <div class="card col s12 m8 l6 offset-l3 offset-m2 session-card" id="session-card">

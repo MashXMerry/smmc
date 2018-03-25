@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
 	#CUSTOM ROUTES
 	get 'profile' , to: 'pages#profile' , as: 'profile'
+	get 'user/search-user', to: 'pages#searchUser' , as: 'search_user'
 	put '/user/update-bio/:id' , to: 'pages#updateBio' , as: 'update_bio'
 
 end

@@ -6,8 +6,8 @@ class PagesController < ApplicationController
 	end
 
 	def user_json
-		user = User.all.order('created_at DESC')
-		render :json => { 'data' => user }
+		user = User.select(:firstname,:lastname,:id ,:email).order('created_at DESC')
+		render :json => user
 	end
 
 	def profile
@@ -49,6 +49,19 @@ class PagesController < ApplicationController
     bio = User.select(:bio).where(:id => userid)
     render :json => { "data" => bio }
   end
+
+  def searchUser
+  	if params[:search].blank?
+  		redirect_to profile_path
+  	else
+  		@user = User.all.where(["firstname LIKE ?" , "#{params[:search]}"])
+  	end
+  end
+
+  # def friends
+  # 	@friend_id = User.find_by(params[:id])
+  # 	@following = Follower.all.where(:userid => current_user.id and :friend_id => @friend_id)
+  # end
 
   protected
 

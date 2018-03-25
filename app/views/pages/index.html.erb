@@ -1,4 +1,9 @@
-<%= render 'pages_partials/navbar' %>
+<% if user_signed_in? %>
+	<%= render 'pages_partials/navbar1' %>
+<% else %>
+	<%= render 'pages_partials/navbar2' %>
+<% end %>
+
 <%= render 'pages_partials/slider' %>
 
 <div class="container" style="margin-top: 50px;">	
@@ -19,16 +24,5 @@
 <%= render 'pages_partials/footer' %>
 
 <script type="text/javascript">
-	// $(document).ready(function() {
-	// 	$('#logout').on('click', function() {
-	// 		$('#app').prepend(`
-	// 				<div class="loader">
-	// 					<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw loader-font"></i>
-	// 					<br>
-	// 					<span class="sr-only logout-font">Loging out ..</span>
-	// 				</div>
-	// 			`);
-	// 		$('#show-loader').hide();
-	// 	});
-	// });
+
 </script>

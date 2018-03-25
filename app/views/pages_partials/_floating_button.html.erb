@@ -15,10 +15,56 @@
         <% end %>
       </li>
       <li>
+         <a class="tooltipped btn-floating blue waves-effect modal-trigger" href="#searchUser" data-tooltip="Search username" data-position="top" data-delay="10">
+           <i class="material-icons">search</i>
+         </a>
+      </li>
+      <li>
         <%= link_to destroy_user_session_path , method: :delete , class:"tooltipped btn-floating red waves-effect waves-yellow" , 'data-position' => 'top' , 'data-tooltip' => "Logout", 'data-delay' => '10' , id: "logout" , data: { confirm: "Are you sure?" } do %>
           <i class="material-icons">power_settings_new</i>
         <% end %>
       </li>
     </ul>
   </div>
+
+  <div id="searchUser" class="modal">
+    <div class="modal-content">
+      <h5 class="center">Search user</h5>
+      <%= form_tag search_user_path, method: :get do %>
+        <div class="input-field">
+          <i class="material-icons prefix">search</i>
+          <label for="autocomplete-input">Enter username</label>
+          <%= text_field_tag :search , params[:search], id: "autocomplete-input" , class:"autocomplete" , required:true %>
+        </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-yellow btn-flat red white-text">close</a>
+    </div>
+  </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $('#autocomplete-input').on('keypress', function() {
+      $.ajax({
+        type: 'get',
+        url: 'http://localhost:3000/users/users_json',
+        success: function(response) {
+          var userArray = response;
+          var user = {}
+          for(var x in userArray) {
+            user[userArray[x].firstname] = "/assets/avatar-fc15e2d91ad61563f4154daead92089a7d116758a4e7f879ec5d483eaa3fac03.jpg";
+          }/*for loop*/
+          $('input.autocomplete').autocomplete({
+            data: user,
+            limit: 10,
+            onAutocomplete: function() {
+            },
+            minLength: 1
+          });/*autocomplete*/
+        }
+      })
+    });/*on keypress*/
+  });/*$(document).ready*/
+</script>
