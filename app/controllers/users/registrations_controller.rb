@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :notification, only: [:edit]
   before_action :configure_account_update_params, only: [:update]
   # GET /resource/sign_up
   def new
@@ -38,6 +39,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+  def notification
+    @notification  = Notification.all.where(:friend_id => current_user.id)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

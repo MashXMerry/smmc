@@ -5,51 +5,57 @@
 <% end %>
 
 <div class="container row">
-  <div class="card col s12 m8 l6 offset-l3 offset-m2 session-card" id="session-card">
-    <h4 class="center">Login</h4>
-    <%= form_for(resource, as: resource_name , url: session_path(resource_name)) do |f| %>
-      <div class="card-content">
-        <div class="input-field">
-          <i class="material-icons prefix purple-text">mail</i>
-          <%= f.label :email, required:true %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" , id: "email-field", required: true  %>
-        </div>
-
-        <div class="input-field">
-          <i class="material-icons prefix purple-text">lock</i>
-          <%= f.label :password, required:true %>
-          <%= f.password_field :password, autocomplete: "off" , id: "password-field", required: true  %>
-        </div>
-
-        <% if devise_mapping.rememberable? -%>
+  <div class="col s12 m8 l6 offset-l3 offset-m2">
+    <div class="card session-card" id="session-card">
+      <h4 class="center" style="padding-top: 20px;font-family: Quicksand">Login</h4>
+      <%= form_for(resource, as: resource_name , url: session_path(resource_name)) do |f| %>
+        <div class="card-content">
           <div class="input-field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <i class="material-icons prefix purple-text">mail</i>
+            <%= f.label :email, required:true %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" , id: "email-field", required: true  %>
           </div>
-        <% end %>
-      </div>
-      <div class="card-action right-align" id="card-action">
-        <div class="actions" id="progress">
-          <%= f.submit "Log in" , class:"btn waves-effect waves-blue purple" ,
-             data: { disable_with: "Logging in.." } ,
-             id: "login-button" %>
+
+          <div class="input-field">
+            <i class="material-icons prefix purple-text">lock</i>
+            <%= f.label :password, required:true %>
+            <%= f.password_field :password, autocomplete: "off" , id: "password-field", required: true  %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="input-field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
         </div>
-      </div>
-    <% end %>
+        <div class="card-action right-align" id="card-action">
+          <div class="actions" id="progress">
+            <%= f.submit "Log in" , class:"btn waves-effect waves-blue purple" ,
+               data: { disable_with: "Logging in.." } ,
+               id: "login-button" %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
     <p class="red-text center notices"><%= alert %></p>
   </div>
+  
 </div>
 
 <style>
+  body {
+    font-family: Quicksand;
+  }
   .session-card {
     margin-top: 100px;
     margin-bottom: 100px;
   }
 
   .loader-gif {
-    position: absolute;
+    position: fixed;
     top: 100px;
-    left: 100px;
+    /*left: 100px;*/
   }
 </style>
 
@@ -62,8 +68,10 @@
         }else if ($('#password-field').val() == "") {
           Materalize.toast("Password required");
         }else {
-          $('#session-card').prepend(`
-              <%= image_tag "loader.gif" , class:"loader-gif" %>
+          $('.card-action').prepend(`
+              <div class="progress purple">
+                <div class="indeterminate purple lighten-4"></div>
+              </div>
             `);
           $('#progress').slideUp(100);
           $('.notices').remove();

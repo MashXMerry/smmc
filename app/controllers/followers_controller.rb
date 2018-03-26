@@ -34,6 +34,16 @@ class FollowersController < ApplicationController
 		redirect_to request.referrer
 	end
 
+	def mark_as_read
+		notif_id = params[:id]
+		notification = Notification.where(:id => notif_id)
+		respond_to do |format|
+			if notification.update(:marked => true)
+				format.js
+			end
+		end
+	end
+
 	protected
 
 	def follower_params

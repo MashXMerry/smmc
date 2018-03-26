@@ -56,12 +56,14 @@
 									Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								</a>
 							<% else %>
-								<i><b class="purple-text"><%= truncate(@bio, length: 200) %></b></i>
-								<center>
-									<a class="modal-trigger tooltipped" href="#modal-update-bio" data-position="bottom" data-tooltip="Edit bio">
-										<i class="material-icons green-text">create</i>
-									</a>
-								</center>
+								<small>
+									<b class="purple-text"><%= truncate(@bio, length: 200) %></b>
+								</small><br>
+								<small>
+									<u>
+										<a href="#modal-update-bio" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Edit bio">Edit bio</a>
+										</u>
+								</small>
 							<% end %>
 						</p>
 					</div>

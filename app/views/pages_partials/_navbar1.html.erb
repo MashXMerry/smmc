@@ -45,11 +45,13 @@
       </ul>
       <ul class="dropdown-content" id="notification-drop">
         <% if @notification.empty? %>
-          <li><a href="">You don't have any notifications yet.</a></li>
+          <li><a>You don't have any notifications yet.</a></li>
         <% else %>
           <% @notification.each do |notif| %>
-            <li>
-              <a href=""><i class="material-icons">person</i><%= notif.content %></a>
+            <li id="notif<%= notif.id %>">
+              <%= link_to mark_path(notif.id), method: :put , remote: :true do %>
+                <i class="material-icons">person</i><%= notif.content %>
+              <% end %>
             </li>
           <% end %>
         <% end %>
@@ -84,7 +86,7 @@
             <% if @notification.empty? %>
               <!-- soon -->
             <% else %>
-              <span class="badge red white-text my-badge"><%= @notification.count %></span>
+              <span class="badge red white-text my-badge" id="counter"><%= @notification.count %></span>
             <% end %>
             <i class="material-icons">person_pin_circle</i>
           </a>
@@ -181,9 +183,10 @@
     margin-left: 15px!important;
   }
   #notification-drop {
-    width: 32.7%!important;
+    width: 35%!important;
     font-size: 10px!important;
     top:100%!important;
+    left:75%!important;
   }
   #notification-drop a {
     font-size: 11px!important;
@@ -193,3 +196,13 @@
     color: #100015!important;
   }
 </style>
+
+<script>
+  $(document).ready(function() {
+    <% @notification.each do |notif| %>
+      $('#notif<%= notif.id %>').on('click', function() {
+        $(this).fadeOut(500).hide(500);
+      });
+    <% end %>
+  });
+</script>
