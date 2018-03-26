@@ -8,4 +8,6 @@ class ApplicationController < ActionController::Base
   # 	userId = current_user.id
   # 	friendId = @followerId
   # end
+  protected
+  
 end

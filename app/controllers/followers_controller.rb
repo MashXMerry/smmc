@@ -8,6 +8,15 @@ class FollowersController < ApplicationController
 			:friend_id => friend_id,
 			:following => true
 		)
+
+		Notification.create(
+			:user_id => current_user.id,
+			:friend_id => friend_id,
+			:content => "#{current_user.firstname + " " + current_user.lastname } starts following you",
+			:marked => false,
+			:notif_type => "Following"
+		)
+
 		redirect_to request.referrer
 	end
 

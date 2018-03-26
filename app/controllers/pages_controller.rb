@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
 	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser]
-
+	
 	def index
-		
+		if user_signed_in?
+			@notification  = Notification.all.where(:friend_id => current_user.id)
+		end
 	end
 
 	def user_json
@@ -11,6 +13,7 @@ class PagesController < ApplicationController
 	end
 
 	def profile
+		@notification  = Notification.all.where(:friend_id => current_user.id)
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
@@ -51,6 +54,7 @@ class PagesController < ApplicationController
   end
 
   def searchUser
+  	@notification  = Notification.all.where(:friend_id => current_user.id)
   	if params[:search].blank?
   		redirect_to root_path
   	else
@@ -71,6 +75,10 @@ class PagesController < ApplicationController
   # end
 
   protected
+
+  def notification
+  	@notification  = Notification.all.where(:friend_id => current_user.id)
+  end
 
   def user_params
   	params.require(:user).permit(:firstname, :middlename, :lastname, :bio, :email)
