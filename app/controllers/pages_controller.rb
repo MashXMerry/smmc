@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 	
 	def index
 		if user_signed_in?
-			@notification  = Notification.all.where(:friend_id => current_user.id)
+			@notification  = Notification.all.where(:friend_id => current_user.id , :marked => false)
 		end
 	end
 
@@ -13,7 +13,9 @@ class PagesController < ApplicationController
 	end
 
 	def profile
-		@notification  = Notification.all.where(:friend_id => current_user.id)
+		@following = Follower.where(:user_id => current_user.id , :following => true)
+		@follower = Follower.where(:friend_id => current_user.id , :following => true)
+		@notification  = Notification.all.where(:friend_id => current_user.id, :marked => false)
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
@@ -54,25 +56,18 @@ class PagesController < ApplicationController
   end
 
   def searchUser
-  	@notification  = Notification.all.where(:friend_id => current_user.id)
+  	@notification  = Notification.all.where(:friend_id => current_user.id , :marked => false)
   	if params[:search].blank?
   		redirect_to root_path
   	else
-  		@user = User.all.where(["firstname LIKE ?" , "#{params[:search]}"]).limit(10)
+  		@user = User.all.where(["username LIKE ?" , "#{params[:search]}"]).limit(10)
 
   		@user.each do |user|
-  			@following = Follower.where(:user_id => current_user.id , :friend_id => user.id , :following => true)
+  			@following = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => true)
   			@unfollowed = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => false)
   		end
-
-  		@follow = Follower.new
   	end
   end
-
-  # def friends
-  # 	@friend_id = User.find_by(params[:id])
-  # 	@following = Follower.all.where(:userid => current_user.id and :friend_id => @friend_id)
-  # end
 
   protected
 

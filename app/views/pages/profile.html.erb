@@ -39,6 +39,16 @@
 						<%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle" %>
 						<center><strong><%= @username %></strong></center>
 						<p class="user-fullname"><%= @fullname %></p>
+						<small>
+							<b>
+							 <a href=""><%= @following.count %> Following</a>	| 
+							 <% if @follower.count > 1 %>
+							 	<a href=""><%= @follower.count %> Followers</a> 
+							 <% else %>
+							 	<a href=""><%= @follower.count %> Follower</a> 
+							 <% end %>
+							</b>
+						</small>
 						<hr>
 						<p id="bio">
 							<% if @bio.blank? %>

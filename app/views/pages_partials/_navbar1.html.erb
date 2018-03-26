@@ -4,27 +4,27 @@
     <a href="#" data-activates="slide-out" class="button-collapse show-on-small hide-on-large-only"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'bottom' , 'data-tooltip' => "#{current_user.firstname}", 'data-delay' => '10' do %>
+          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'top' , 'data-tooltip' => "#{current_user.firstname}", 'data-delay' => '10' do %>
             <i class="material-icons">account_circle</i>
           <% end %>
         </li>
         <li>
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Messages" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Messages" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
             <i class="material-icons">messages</i>
           </a>
         </li>
         <li>
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Home" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
             <i class="material-icons">home</i>
           </a>
         </li>
         <li>
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Followers" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Followers" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
             <i class="material-icons">insert_emoticon</i>
           </a>
         </li>
         <li>
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip='<%= @notification.count %> Notifications' data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
+          <a href="#" class="tooltipped dropdown-button" data-position="top" data-tooltip='<%= @notification.count %> Notifications' data-delay="10" data-activates="notification-drop">
             <% if @notification.count == 0 %>
 
             <% else %>
@@ -43,33 +43,44 @@
           <li><%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"center" %></li>
         </ul>
       </ul>
+      <ul class="dropdown-content" id="notification-drop">
+        <% if @notification.empty? %>
+          <li><a href="">You don't have any notifications yet.</a></li>
+        <% else %>
+          <% @notification.each do |notif| %>
+            <li>
+              <a href=""><i class="material-icons">person</i><%= notif.content %></a>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
   </div>
 
   <nav class="purple lighten-2 my-navbar">
     <div class="container nav-wrapper">
       <ul class="right hide-on-large-only show-on-small">
         <li class="waves-effect waves-violet">
-          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'bottom' , 'data-tooltip' => "#{current_user.firstname}"  do %>
+          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'top' , 'data-tooltip' => "#{current_user.firstname}"  do %>
             <i class="material-icons">account_circle</i>
           <% end %>
         </li>
         <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Messages">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Messages">
             <i class="material-icons">messages</i>
           </a>
         </li>
         <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Home">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Home">
             <i class="material-icons">home</i>
           </a>
         </li>
         <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Followers">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Followers">
             <i class="material-icons">insert_emoticon</i>
           </a>
         </li>
         <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Notifications">
+          <a href="#" class="tooltipped" data-position="top" data-tooltip="Notifications">
           	<% if @notification.count == 0 %>
               <!-- soon -->
             <% else %>
@@ -168,5 +179,17 @@
     top: 35px;
     min-width: 0!important;
     margin-left: 15px!important;
+  }
+  #notification-drop {
+    width: 32.7%!important;
+    font-size: 10px!important;
+    top:100%!important;
+  }
+  #notification-drop a {
+    font-size: 11px!important;
+  }
+
+  .dropdown-content li > a, .dropdown-content li > span {
+    color: #100015!important;
   }
 </style>
