@@ -28,19 +28,20 @@
   </div>
 
   <div id="searchUser" class="modal">
-    <div class="modal-content">
-      <h5 class="center">Search user</h5>
-      <%= form_tag search_user_path, method: :get do %>
+    <%= form_tag search_user_path, method: :get do %>
+      <div class="modal-content">
+        <h5 class="center">Search user</h5>
         <div class="input-field">
           <i class="material-icons prefix">search</i>
           <label for="autocomplete-input">Enter username</label>
           <%= text_field_tag :search , params[:search], id: "autocomplete-input" , class:"autocomplete" , required:true %>
         </div>
-      <% end %>
-    </div>
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-yellow btn-flat red white-text">close</a>
-    </div>
+      </div>
+      <div class="modal-footer" id="search-body">
+        <a class="modal-action modal-close waves-effect waves-yellow btn-flat red white-text">close</a>
+        <%= submit_tag "Seach user", class:"btn waves-effect waves-blue purple" , data: { disable_with: "Searching user..." } %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
@@ -49,7 +50,7 @@
     $('#autocomplete-input').on('keypress', function() {
       $.ajax({
         type: 'get',
-        url: 'https://sumimachine.herokuapp.com/users/users_json',
+        url: 'http://localhost:3000/users/users_json',
         success: function(response) {
           var userArray = response;
           var user = {}

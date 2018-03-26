@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user! , only: [:profile , :user_json]
+	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser]
 
 	def index
 		
@@ -52,9 +52,15 @@ class PagesController < ApplicationController
 
   def searchUser
   	if params[:search].blank?
-  		redirect_to profile_path
+  		redirect_to root_path
   	else
-  		@user = User.all.where(["firstname LIKE ?" , "#{params[:search]}"])
+  		@user = User.all.where(["firstname LIKE ?" , "#{params[:search]}"]).limit(10)
+
+  		@user.each do |user|
+  			@following = Follower.where(:user_id => current_user.id , :friend_id => user.id , :following => true)
+  		end
+
+  		@follow = Follower.new
   	end
   end
 
@@ -65,9 +71,9 @@ class PagesController < ApplicationController
 
   protected
 
-  # def user_params
-  # 	params.require(:user).permit(:firstname, :middlename, :lastname, :bio, :email)
-  # end
+  def user_params
+  	params.require(:user).permit(:firstname, :middlename, :lastname, :bio, :email)
+  end
 	
 	def bio_params
 	  params.require(:user).permit(:bio)
