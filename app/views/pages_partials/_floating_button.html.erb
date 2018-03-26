@@ -33,7 +33,7 @@
         <h5 class="center">Search user</h5>
         <div class="input-field">
           <i class="material-icons prefix">search</i>
-          <label for="autocomplete-input">Enter username</label>
+          <label for="autocomplete-input">Type here..</label>
           <%= text_field_tag :search , params[:search], id: "autocomplete-input" , class:"autocomplete" , required:true %>
         </div>
       </div>
@@ -50,12 +50,12 @@
     $('#autocomplete-input').on('keypress', function() {
       $.ajax({
         type: 'get',
-        url: 'http://localhost:3000/users/users_json',
+        url: 'https://sumimachine.herokuapp.com/users/users_json',
         success: function(response) {
           var userArray = response;
           var user = {}
           for(var x in userArray) {
-            user[userArray[x].firstname] = "/assets/avatar-fc15e2d91ad61563f4154daead92089a7d116758a4e7f879ec5d483eaa3fac03.jpg";
+            user[userArray[x].firstname] = '/assets/avatar-fc15e2d91ad61563f4154daead92089a7d116758a4e7f879ec5d483eaa3fac03.jpg'
           }/*for loop*/
           $('input.autocomplete').autocomplete({
             data: user,

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 	# Follower
 	post '/user/follow-friend/:id' , to: 'followers#create' , as: 'follow'
 	delete '/user/unfollow-friend/:id', to: 'followers#destroy' , as: 'unfollow'
+	put '/user/follow-again/:id' , to: 'followers#follow_again' , as: 'follow_again'
 
 end

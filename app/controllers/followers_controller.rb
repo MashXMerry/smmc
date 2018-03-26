@@ -14,7 +14,14 @@ class FollowersController < ApplicationController
 	def destroy
 		@friend_id = params[:id]
 		@follower = Follower.where(:user_id => current_user.id).where(:friend_id => @friend_id)
-		@follower.destroy_all
+		@follower.update(:following => false)
+		redirect_to request.referrer
+	end
+
+	def follow_again
+		@friend_id = params[:id]
+		@follower = Follower.where(:user_id => current_user.id).where(:friend_id => @friend_id)
+		@follower.update(:following => true)
 		redirect_to request.referrer
 	end
 

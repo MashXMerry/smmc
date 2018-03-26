@@ -58,6 +58,7 @@ class PagesController < ApplicationController
 
   		@user.each do |user|
   			@following = Follower.where(:user_id => current_user.id , :friend_id => user.id , :following => true)
+  			@unfollowed = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => false)
   		end
 
   		@follow = Follower.new
