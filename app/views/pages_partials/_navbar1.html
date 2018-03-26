@@ -25,7 +25,7 @@
         </li>
         <li>
           <a href="#" class="tooltipped dropdown-button" data-position="top" data-tooltip='<%= @notification.count %> Notifications' data-delay="10" data-activates="notification-drop">
-            <% if @notification.empty? %>
+            <% if @notification.count.empty? %>
 
             <% else %>
               <span class="badge red white-text my-badge"><%= @notification.count %></span>
@@ -81,7 +81,7 @@
         </li>
         <li class="waves-effect waves-violet">
           <a href="#" class="tooltipped" data-position="top" data-tooltip="Notifications">
-            <% if @notification.empty? %>
+          	<% if @notification.count == 0 %>
               <!-- soon -->
             <% else %>
               <span class="badge red white-text my-badge"><%= @notification.count %></span>
@@ -175,7 +175,7 @@
     font-family: "Quicksand";
   }
   .my-badge {
-    position: absolute;
+  	position: absolute;
     top: 35px;
     min-width: 0!important;
     margin-left: 15px!important;

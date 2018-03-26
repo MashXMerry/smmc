@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 	end
 
 	def user_json
-		user = User.select(:firstname,:lastname,:id ,:email).order('created_at DESC')
+		user = User.select(:firstname,:lastname,:id ,:email, :username).order('created_at DESC')
 		render :json => user
 	end
 
