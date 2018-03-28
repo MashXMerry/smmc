@@ -40,10 +40,18 @@
     </div>  
     <p class="red-text center notices"><%= alert %></p>
   </div>
-  
 </div>
 
+<%= image_tag "12.png" , class:"rem" %>
+
 <style>
+  .rem {
+    position: fixed;
+    background-attachment: fixed;
+    bottom: 0%;
+    width: 25%;
+  }
+
   body {
     font-family: Quicksand;
   }
@@ -79,5 +87,3 @@
       });
   });
 </script>
-
-<%= render 'pages_partials/footer' %>

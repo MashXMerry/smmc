@@ -24,12 +24,18 @@
           </a>
         </li>
         <li>
-          <a href="#" class="tooltipped dropdown-button" data-position="top" data-tooltip='<%= @notification.count %> Notifications' data-delay="10" data-activates="notification-drop">
+          <a class="dropdown-button" data-activates="notification-drop">
             <% if @notification.empty? %>
 
             <% else %>
-              <span class="badge red white-text my-badge"><%= @notification.count %></span>
-            <% end %>
+              <% if @unread_notification.count < 1 %>
+                <!-- No counter will show -->
+              <% else %>
+                <span class="badge red white-text my-badge" id="counter">
+                  <%= @unread_notification.count %>
+                </span>
+              <% end %><!-- if unread notification.count < 1 -->
+            <% end %><!-- if @notification.empty? -->
             <i class="material-icons">person_pin_circle</i>
           </a>
         </li>
@@ -48,13 +54,13 @@
           <li><a>You don't have any notifications yet.</a></li>
         <% else %>
           <% @notification.each do |notif| %>
-            <li id="notif<%= notif.id %>">
+            <li class="gray" id="notif<%= notif.id %>">
               <%= link_to mark_path(notif.id), method: :put , remote: :true do %>
                 <i class="material-icons">person</i><%= notif.content %>
-              <% end %>
+              <% end %><!-- link_to mark_path -->
             </li>
-          <% end %>
-        <% end %>
+          <% end %><!-- @notification.each -->
+        <% end %><!-- if @notification.empty? -->
       </ul>
   </div>
 
@@ -86,8 +92,14 @@
             <% if @notification.empty? %>
               <!-- soon -->
             <% else %>
-              <span class="badge red white-text my-badge" id="counter"><%= @notification.count %></span>
-            <% end %>
+              <% if @unread_notification.count < 1 %>
+                <!-- No counter will show -->
+              <% else %>
+                <span class="badge red white-text my-badge" id="counter">
+                  <%= @unread_notification.count %>
+                </span>
+              <% end %><!-- if @unread_notification.count < 1 -->
+            <% end %><!-- if @notification.empty? -->
             <i class="material-icons">person_pin_circle</i>
           </a>
         </li>
@@ -201,7 +213,7 @@
   $(document).ready(function() {
     <% @notification.each do |notif| %>
       $('#notif<%= notif.id %>').on('click', function() {
-        $(this).fadeOut(500).hide(500);
+        // $(this).fadeOut(500).hide(500);
       });
     <% end %>
   });

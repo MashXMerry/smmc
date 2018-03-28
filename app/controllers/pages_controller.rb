@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser]
+	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser , :redirect]
 	
 	def index
 		if user_signed_in?
-			@notification  = Notification.all.where(:friend_id => current_user.id , :marked => false)
+			@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+			@notification  = Notification.all.where(:friend_id => current_user.id)
 		end
 	end
 
@@ -15,7 +16,8 @@ class PagesController < ApplicationController
 	def profile
 		@following = Follower.where(:user_id => current_user.id , :following => true)
 		@follower = Follower.where(:friend_id => current_user.id , :following => true)
-		@notification  = Notification.all.where(:friend_id => current_user.id, :marked => false)
+		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+		@notification  = Notification.all.where(:friend_id => current_user.id)
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
@@ -38,6 +40,11 @@ class PagesController < ApplicationController
 		end	
 	end
 
+	def friends
+		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+		@notification  = Notification.all.where(:friend_id => current_user.id)
+	end
+
 	def updateBio
 		@user = User.find(params[:id])
 		@user.update(bio_params)
@@ -56,7 +63,8 @@ class PagesController < ApplicationController
   end
 
   def searchUser
-  	@notification  = Notification.all.where(:friend_id => current_user.id , :marked => false)
+  	@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+		@notification  = Notification.all.where(:friend_id => current_user.id)
   	if params[:search].blank?
   		redirect_to root_path
   	else
@@ -67,6 +75,12 @@ class PagesController < ApplicationController
   			@unfollowed = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => false)
   		end
   	end
+  end
+
+  def redirect
+  	respond_to do |format|
+  		format.html { redirect_to profile_path , notice: "You are doing something FISHY !!" }
+  	end	
   end
 
   protected

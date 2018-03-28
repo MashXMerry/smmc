@@ -14,13 +14,17 @@ Rails.application.routes.draw do
 
 	#CUSTOM ROUTES
 	get '/profile' , to: 'pages#profile' , as: 'profile'
+	get '/friends' , to: 'pages#friends' , as: 'friends'
 	get '/user/search-user', to: 'pages#searchUser' , as: 'search_user'
 	put '/user/update-bio/:id' , to: 'pages#updateBio' , as: 'update_bio'
 
 	# Follower
+	get '/user/unfollow-friend/:id' , to: 'pages#redirect'
 	post '/user/follow-friend/:id' , to: 'followers#create' , as: 'follow'
 	delete '/user/unfollow-friend/:id', to: 'followers#destroy' , as: 'unfollow'
 	put '/user/mark-as-read/:id' , to: 'followers#mark_as_read' , as: 'mark'
 	put '/user/follow-again/:id' , to: 'followers#follow_again' , as: 'follow_again'
+
+	# FRIENDS
 
 end

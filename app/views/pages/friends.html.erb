@@ -1,0 +1,45 @@
+<%= render 'pages_partials/navbar1' %>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 m10 l8 offset-l2 offset-m1">
+			<center>
+				<p class="title">Friend List</p>
+				<small>1 friend</small>
+			</center>
+			<ul class="collection">
+		    <li class="collection-item avatar">
+		      <%= image_tag "avatar.jpg" , class:"circle friend-photo" %>
+		      <p class="friend-name">Mashiyyat Delos Santos (Mash)</p>
+		      <a href="#!" class="secondary-content friend-option"><i class="material-icons purple-text">more_vert</i></a>
+		    </li>
+		    </li>
+		  </ul>
+		</div>
+	</div>
+</div>
+
+<style>
+	.title {
+		font-family: Quicksand;
+		font-size:30px;
+		margin-bottom: -5px;
+	}
+	.friend-name {
+		margin-top: 3%!important;
+    margin-bottom: 15px!important;
+    position: relative;
+    font-family: Quicksand;
+    font-size: 18px;
+	}
+	.friend-photo {
+		position: relative;
+		margin-top: 1%!important;
+	}
+	.friend-option {
+		position: relative;
+		margin-top: 2%!important;
+	}
+</style>

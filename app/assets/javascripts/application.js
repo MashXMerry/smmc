@@ -17,7 +17,9 @@
 
 $(document).ready(function() {
 	// MaterializeCSS Initializations
-	$('.slider').slider();
+	$('.slider').slider({
+		indicators: false
+	});
 	$(".button-collapse").sideNav();
 	$('.modal').modal();
 	$('.dropdown-button').dropdown({

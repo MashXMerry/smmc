@@ -21,8 +21,10 @@
 			<%= render 'form_partials/form_bio' %>
 		</div>
 	<% end %>
+
 <div class="container">
 	<div class="row post-content-container">
+		<center><p class="fishy red-text"><%= notice %></p></center>
 		<div class="col s12 m10 l8 offset-m1">
 			<% 3.times { -%>
 				<%= render 'content_partials/post' %>
@@ -104,5 +106,9 @@
 	footer {
 		position: absolute!important;
 		top: 100%!important;
+	}
+	.fishy {
+		font-family: Quicksand;
+		font-size: 20px;
 	}
 </style>
