@@ -12,15 +12,15 @@
   </div>
 </div>
 
-	<% if @bio.blank? %>
-		<div id="modal-update-bio" class="modal bottom-sheet">
-			<%= render 'form_partials/form_bio' %>
-		</div>
-	<% else %>
-		<div id="modal-update-bio" class="modal bottom-sheet">
-			<%= render 'form_partials/form_bio' %>
-		</div>
-	<% end %>
+<% if @bio.blank? %>
+	<div id="modal-update-bio" class="modal bottom-sheet">
+		<%= render 'form_partials/form_bio' %>
+	</div>
+<% else %>
+	<div id="modal-update-bio" class="modal bottom-sheet">
+		<%= render 'form_partials/form_bio' %>
+	</div>
+<% end %>
 
 <div class="container">
 	<div class="row post-content-container">

@@ -16,12 +16,14 @@ class PagesController < ApplicationController
 	def profile
 		@following = Follower.where(:user_id => current_user.id , :following => true)
 		@follower = Follower.where(:friend_id => current_user.id , :following => true)
+		# ==========================================================================
 		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
 		@notification  = Notification.all.where(:friend_id => current_user.id)
+		# ==========================================================================
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
-		
+		# ==========================================================================
 		@profile.each do |profile|
 			@firstname = profile.firstname
 			@lastname = profile.lastname
@@ -36,8 +38,8 @@ class PagesController < ApplicationController
 				@username = ""
 			else
 				@username = "("+ current_user.username + ")"	
-			end
-		end	
+			end #if 
+		end	# @profile.each
 	end
 
 	def friends
