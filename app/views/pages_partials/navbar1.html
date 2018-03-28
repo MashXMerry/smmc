@@ -24,12 +24,18 @@
           </a>
         </li>
         <li>
-          <a href="#" class="tooltipped dropdown-button" data-position="top" data-tooltip='<%= @notification.count %> Notifications' data-delay="10" data-activates="notification-drop">
-            <% if @notification.count.empty? %>
+          <a class="dropdown-button" data-activates="notification-drop">
+            <% if @notification.empty? %>
 
             <% else %>
-              <span class="badge red white-text my-badge"><%= @notification.count %></span>
-            <% end %>
+              <% if @unread_notification.count < 1 %>
+                <!-- No counter will show -->
+              <% else %>
+                <span class="badge red white-text my-badge" id="counter">
+                  <%= @unread_notification.count %>
+                </span>
+              <% end %><!-- if unread notification.count < 1 -->
+            <% end %><!-- if @notification.empty? -->
             <i class="material-icons">person_pin_circle</i>
           </a>
         </li>
@@ -45,14 +51,16 @@
       </ul>
       <ul class="dropdown-content" id="notification-drop">
         <% if @notification.empty? %>
-          <li><a href="">You don't have any notifications yet.</a></li>
+          <li><a>You don't have any notifications yet.</a></li>
         <% else %>
           <% @notification.each do |notif| %>
-            <li>
-              <a href=""><i class="material-icons">person</i><%= notif.content %></a>
+            <li class="gray" id="notif<%= notif.id %>">
+              <%= link_to mark_path(notif.id), method: :put , remote: :true do %>
+                <i class="material-icons">person</i><%= notif.content %>
+              <% end %><!-- link_to mark_path -->
             </li>
-          <% end %>
-        <% end %>
+          <% end %><!-- @notification.each -->
+        <% end %><!-- if @notification.empty? -->
       </ul>
   </div>
 
@@ -80,13 +88,20 @@
           </a>
         </li>
         <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Notifications">
-          	<% if @notification.count == 0 %>
+          <%= link_to notifications_path , 'data-position' => 'top' , 'data-tooltip' => 'Notifications' , class:"tooltipped" do %>
+            <% if @notification.empty? %>
               <!-- soon -->
             <% else %>
-              <span class="badge red white-text my-badge"><%= @notification.count %></span>
-            <% end %>
+              <% if @unread_notification.count < 1 %>
+                <!-- No counter will show -->
+              <% else %>
+                <span class="badge red white-text my-badge" id="counter">
+                  <%= @unread_notification.count %>
+                </span>
+              <% end %><!-- if @unread_notification.count < 1 -->
+            <% end %><!-- if @notification.empty? -->
             <i class="material-icons">person_pin_circle</i>
+          <% end %>
           </a>
         </li>
         <li>
@@ -175,16 +190,16 @@
     font-family: "Quicksand";
   }
   .my-badge {
-  	position: absolute;
+    position: absolute;
     top: 35px;
     min-width: 0!important;
     margin-left: 15px!important;
   }
   #notification-drop {
-    width: 32.7%!important;
+    width: 35%!important;
     font-size: 10px!important;
     top:100%!important;
-    left: 75%!important;   
+    left:75%!important;
   }
   #notification-drop a {
     font-size: 11px!important;
@@ -194,3 +209,12 @@
     color: #100015!important;
   }
 </style>
+
+<script>
+  $(document).ready(function() {
+    <% @notification.each do |notif| %>
+      $('#notif<%= notif.id %>').on('click', function() {
+      });
+    <% end %>
+  });
+</script>

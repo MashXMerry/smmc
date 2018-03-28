@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser , :redirect]
+	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser , :redirect, :notifications]
 	
 	def index
 		if user_signed_in?
