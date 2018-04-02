@@ -1,0 +1,114 @@
+<%= render 'pages_partials/navbar1' %>
+
+<div class="center-align profile-container white" style="margin-top: 100px;">
+	<% @user.each do |user| %>
+		<%= image_tag "avatar.jpg" , class:"circle" , width:"20%" %>
+		<p style="margin-bottom: 0px;"><%= user.firstname + " " + user.lastname %> (<%= user.username %>)</p>
+		<small><%= user.email %></small>
+		<div class="nav-wrapper">
+		  <div class="col s12">
+		    <a class="purple-text"><%= @following_count.count %> following</a> | 
+		    <a class="blue-text"><%= @follower_count.count %> follower</a> | 
+		    <% if @following.present? %>
+		    	<%= link_to unfollow_path(user.id) , method: :delete , class:"tooltipped red-text" , 'data-tooltip' => "Unfollow #{user.firstname}?" , 'data-position' => 'top' do %>
+		    		Unfollow
+		    	<% end %>
+		    <% elsif @unfollowed.present? %>	
+		    	<%= link_to follow_again_path(user.id) , method: :put , class:"tooltipped green-text" , 'data-tooltip' => "Follow #{user.firstname}?" , 'data-position' => 'top' do %>
+		    		Follow
+		    	<% end %>
+		    <% else %>
+		    	<%= link_to follow_path(user.id) , method: :post , class:"tooltipped green-text" , 'data-tooltip' => "Follow #{user.firstname}?" , 'data-position' => 'top' do %>
+		    		Follow
+		    	<% end %>
+		    <% end %>
+		  </div>
+		</div>
+		<% if user.bio.present? %>
+			<p class="bio">
+				<%= user.bio %>
+			</p>
+		<% end %>
+	<% end %>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+	<div class="row">
+		<div class="col s12 m10 l8 offset-m1 offset-l2 friend-container">
+			<% 3.times { -%>
+					<%= render 'content_partials/post' %>
+				<% } -%>
+
+				<% 3.times { -%>
+					<%= render 'content_partials/post_image' %>
+				<% } -%>
+		</div>
+	</div>	
+</div>
+
+<%= render 'pages_partials/floating_button' %>
+
+<style>
+	
+	.bio {
+		border: 1px solid #e7e7e7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    border-radius: 10px;
+    margin-right: 10%;
+	}
+
+	.profile-container {
+		padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 0px 1px #d0d0d0;
+	}
+
+	.user-fullname {
+		font-size: 20px;
+		margin-left: 20px;
+		font-family: 'Quicksand';
+	}
+	.post-input {
+		resize: none;
+		width: 100%;
+    border-radius: 5px 5px 5px 5px;
+    height: 100%;
+	}
+	.post-content-container {
+		margin-top: 100px;
+	}
+	.post-content {
+		box-shadow: 0px 1px 3px #c4c4c4;
+    padding: 10px 15px 20px 15px;
+    border-radius: 5px;
+    font-family: Quicksand;
+    margin-bottom: 10px;
+	}
+
+	.friend-container {
+		padding-right: 0px!important;
+		padding-left: 0px!important;
+	}
+	.title {
+		font-family: Quicksand;
+		font-size:30px;
+		margin-bottom: -5px;
+	}
+	.friend-name {
+		margin-top: 3%!important;
+    margin-bottom: 15px!important;
+    position: relative;
+    font-family: Quicksand;
+    font-size: 18px;
+	}
+	.friend-photo {
+		position: relative;
+		margin-top: 1%!important;
+	}
+	.friend-option {
+		position: relative;
+		margin-top: 2%!important;
+	}
+</style>

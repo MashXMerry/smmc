@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326043810) do
+ActiveRecord::Schema.define(version: 20180329123504) do
 
   create_table "followers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "user_id"
@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 20180326043810) do
     t.boolean "following"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "friend_name"
+    t.string "friend_fname"
+    t.string "friend_lname"
+    t.string "friend_email"
   end
 
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

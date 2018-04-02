@@ -13,19 +13,47 @@
 </div>
 
 <% if @bio.blank? %>
-	<div id="modal-update-bio" class="modal bottom-sheet">
+	<div id="modal-update-bio" class="modal modal-fixed-footer">
 		<%= render 'form_partials/form_bio' %>
 	</div>
 <% else %>
-	<div id="modal-update-bio" class="modal bottom-sheet">
+	<div id="modal-update-bio" class="modal modal-fixed-footer">
 		<%= render 'form_partials/form_bio' %>
 	</div>
 <% end %>
 
+<div class="center-align profile-container white" style="margin-top: 100px;">
+	<div class="profile-image-container">
+		<%= image_tag "12.png" , class:"circle profile-photo" %>
+	</div>
+	<p class="user-fullname"><b><%= @fullname %> <%= @username %></b></p>
+	<small><%= @email %></small>
+	<div class="nav-wrapper">
+	  <div class="col s12">
+	    <a class="purple-text"><%= @following.count %> following</a> | 
+	    <a class="blue-text"><%= @follower.count %> follower</a>
+	  </div>
+	</div>
+	<p class="bio">
+		<% if @bio.blank? %>
+			<a class="modal-trigger green-text" href="#modal-update-bio">
+				Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			</a>
+		<% else %>
+			<small><%= @bio %></small><br>
+			<small>
+				<u>
+					<a href="#modal-update-bio" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Edit bio">Edit bio</a>
+					</u>
+			</small>
+		<% end %>
+	</p>
+</div>
+
 <div class="container">
 	<div class="row post-content-container">
-		<center><p class="fishy red-text"><%= notice %></p></center>
-		<div class="col s12 m10 l8 offset-m1">
+		<center><p class="fishy green-text"><%= notice %></p></center>
+		<div class="col s12 m10 l8 offset-l2 offset-m1">
 			<% 3.times { -%>
 				<%= render 'content_partials/post' %>
 			<% } -%>
@@ -34,50 +62,43 @@
 				<%= render 'content_partials/post_image' %>
 			<% } -%>
 		</div>
-		<div class="col l4">
-			<div class="second-row-content hide-on-med-and-down left">
-				<div class="card center-align">
-					<div class="card-content">
-						<%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle" %>
-						<center><strong><%= @username %></strong></center>
-						<p class="user-fullname"><%= @fullname %></p>
-						<small>
-							<b>
-							 <a href=""><%= @following.count %> Following</a>	| 
-							 <% if @follower.count > 1 %>
-							 	<a href=""><%= @follower.count %> Followers</a> 
-							 <% else %>
-							 	<a href=""><%= @follower.count %> Follower</a> 
-							 <% end %>
-							</b>
-						</small>
-						<hr>
-						<p id="bio">
-							<% if @bio.blank? %>
-								<a class="modal-trigger green-text" href="#modal-update-bio">
-									Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								</a>
-							<% else %>
-								<small>
-									<b class="purple-text"><%= truncate(@bio, length: 200) %></b>
-								</small><br>
-								<small>
-									<u>
-										<a href="#modal-update-bio" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Edit bio">Edit bio</a>
-										</u>
-								</small>
-							<% end %>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
 <%= render 'pages_partials/floating_button' %>
 
 <style type="text/css">	
+
+	.profile-image-container {
+		overflow: hidden;
+	}
+
+ .profile-photo:hover {
+    cursor:pointer;
+    /*filter: blur(3px);*/
+    transform: scale(.95);
+ }
+
+	.profile-photo {
+		transition: .2s;
+		width: 20%;
+		border: .4px solid blue;
+	}
+
+	.bio {
+		border: 1px solid #e7e7e7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    border-radius: 10px;
+    margin-right: 10%;
+	}
+
+	.profile-container {
+		padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 1px 0px 1px #d0d0d0;
+	}
 	.input-container {
 		height: 200px;
 	}
@@ -98,9 +119,7 @@
     margin-bottom: 10px;
 	}
 	.user-fullname {
-		font-size: 20px;
-		margin-left: 20px;
-		font-family: 'Quicksand';
+		margin-bottom: 0px;
 	}
 	footer {
 		position: absolute!important;

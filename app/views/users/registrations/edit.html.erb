@@ -2,22 +2,10 @@
 
 <div class="div">
   <div class="row" style="padding-top: 150px">
-    <div class="col s12 m10 l4 offset-m1 hide-on-med-and-down">
-      <div class="first-row-content row center-align">
-        <%= image_tag "avatar.jpg" , style:"width:50%" , class:"circle center" %><br>
-        <h5>Current information</h5><hr>
-        <b>Firstname: </b><%= current_user.firstname %><br>
-        <b>Middlename: </b><%= current_user.middlename %><br>
-        <b>Lastname: </b><%= current_user.lastname %><br>
-        <b>Gender: </b>SOOn<br>
-        <b>Birthday: </b>SOON<br>
-        <b>Email: </b><%= current_user.email %><br>
-      </div>
-    </div>
-    <div class="col l8">
+    <div class="col l6 m8 s12 offset-l3 offset-m2">
       <div class="second-row-content left white">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
+          <blockquote><%= devise_error_messages! %></blockquote>
           <h4 class="center">Edit <%= resource_name.to_s.humanize %></h4>
           <div class="input-field col s12">
             <i class="material-icons prefix">mail</i>
@@ -72,9 +60,9 @@
             <label>Password confirmation (6 character minimum)</label>
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
-          <div class="input-field col s12">
+          <div class="input-field col s12 password-verification">
             <i class="material-icons prefix">lock</i>
-            <label>Current password(we need your current password to confirm your changes)</label>
+            <label>Password Verification (Current Password)</label>
             <%= f.password_field :current_password, autocomplete: "off" , required: true %>
           </div>  
           <div class="actions col s12">
@@ -99,12 +87,16 @@
   }
   .second-row-content {
     margin-bottom: 100px;
-    border: 1px solid #aaaaaa;
     padding: 20px 15px 20px 15px;
     border-radius: 5px;
+    box-shadow: 0px 0px 1px #959595;
   }
   nav {
     position: absolute!important;
+  }
+  h2 {
+    font-size: 20px;
+    color:red;
   }
   .modal.open{
         width: 100%;

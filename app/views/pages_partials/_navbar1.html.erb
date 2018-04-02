@@ -17,12 +17,17 @@
         <% end %>
       </li>
       <li>
-        <%= link_to profile_path do %>
+        <%= link_to followers_path do %>
           <i class="material-icons">sentiment_very_satisfied</i>
         <% end %>
       </li>
       <li>
-        <a class="dropdown-button" data-activates="dropdown-notification">
+        <a class="button-collapse-2" data-activates="slide-out">
+          <% if @unread_notification.count < 1 %>
+            <!-- some codes here -->
+          <% else %>
+            <span class="badge notif-count"><%= @unread_notification.count %></span>
+          <% end %>
           <i class="material-icons">notifications</i>
         </a>
       </li>
@@ -31,18 +36,6 @@
           <i class="material-icons">more_vert</i>
         </a>
       </li>
-    </ul>
-
-  <!-- dropdowns -->
-    <ul id="dropdown-notification" class="dropdown-content notification-drop">
-      <% @notification.each do |notif| %>
-        <li>
-          <a href="" class="center valign-wrapper">
-            <i class="material-icons">sentiment_very_satisfied</i>
-            <%= notif.content %>
-          </a>
-        </li> 
-      <% end %> 
     </ul>
 
     <ul id="dropdown-logout" class="dropdown-content setting-drop">
@@ -62,7 +55,7 @@
   <!-- side nav -->
   </div>
 
-  <nav class="purple lighten-2">
+  <nav class="purple lighten-2" style="position: relative;">
     <div class="nav-wrapper container">
       
       <ul class="hide-on-med-and-down">
@@ -72,7 +65,7 @@
         <li><a href="#">Games</a></li>
       </ul>
 
-      <ul class="right hide-on-large-only">
+      <ul class="hide-on-large-only">
         <li>
           <%= link_to profile_path do %>
             <i class="material-icons">person</i>
@@ -84,32 +77,27 @@
           <% end %>
         </li>
         <li>
-          <%= link_to profile_path do %>
+          <%= link_to followers_path do %>
             <i class="material-icons">sentiment_very_satisfied</i>
           <% end %>
         </li>
         <li>
-          <a class="dropdown-button" data-activates="dropdown-notification-2">
+          <a class="button-collapse-2" data-activates="slide-out">
+            <% if @unread_notification.count < 1 %>
+              <!-- some codes here -->
+            <% else %>
+              <span class="badge notif-count"><%= @unread_notification.count %></span>
+            <% end %>
             <i class="material-icons">notifications</i>
           </a>
         </li>
         <li>
           <a class="dropdown-button" data-activates="dropdown-logout-2">
             <i class="material-icons">more_vert</i>
-          </a>
+          </a>  
         </li>
       </ul>
-      <!-- dropdown-notification-2 -->
-      <ul id="dropdown-notification-2" class="dropdown-content notification-drop">
-        <% @notification.each do |notif| %>
-          <li>
-            <a href="" class="center valign-wrapper">
-              <i class="material-icons">sentiment_very_satisfied</i>
-              <%= notif.content %>
-            </a>
-          </li> 
-        <% end %>
-      </ul>
+
       <!-- dropdown logout -->
       <ul id="dropdown-logout-2" class="dropdown-content setting-drop">
         <li><%= link_to "Settings" , edit_user_registration_path, class:"center" %></li>
@@ -120,10 +108,68 @@
   </nav><!-- 2nd NAVBAR -->
 </nav><!-- 1st NAVBAR -->
 
+<ul id="slide-out" class="side-nav">
+  <li><a href="#!"><i class="material-icons blue-text">notifications</i>Notifications</a></li>
+  <li><div class="divider"></div></li>
+  <% @notification.each do |notification| %>
+    <% if notification.marked == true %>
+      <li>
+        <a class="btn-option">
+          <i class="fa fa-circle options" aria-hidden="true"></i></a>
+        <a>
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <small><%= notification.content %></small>
+        </a>
+      </li>
+    <% else %>
+      <li class="purple lighten-4">
+        <a class="btn-option" onclick="Materialize.toast('Marked as read',1000)">
+          <i class="fa fa-dot-circle-o options" aria-hidden="true"></i></a>
+        <%= link_to mark_path(notification.id) , method: :put, class:"waves-effect" do %>
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <small><%= notification.content %>
+          </small>
+        <% end %>
+      </li>  
+    <% end %>
+  <% end %>
+  <% if @notification.count > 2 %>
+    <li style="background-color: #ededed;">
+      <a class="waves-effect gray"><i class="material-icons blue-text">explore</i>
+        <small>View all notification</small>
+      </a>
+    </li>
+  <% end %>
+  <% if @notification.empty? %>
+    <li style="background-color: #ededed;">
+      <a class="waves-effect gray"><i class="fa fa-meh-o" aria-hidden="true"></i>
+        <small>No notifications yet</small>
+      </a>
+    </li>
+  <% end %>
+</ul>
 
 <style>
   body {
     font-family: Quicksand;
+  }
+  .btn-option {
+    font-size: 10px!important;
+    font-weight: 0px!important;
+    height: 0px!important;
+    line-height: 0px!important;
+    padding: 0px!important;
+    left: 93%;
+    position: relative;
+    top: 25px;
+  }
+  .options {
+     float: none; 
+     height: 0px!important; 
+     line-height: 0px!important; 
+     margin: 0px!important; 
+     width: 0px!important; 
+    color: rgba(0, 0, 0, 0.54);
   }
 
   .notification-drop {
@@ -142,5 +188,18 @@
 
   .dropdown-content li > a, .dropdown-content li > span {
     color: #896694!important;
+  }
+  .button-collapse {
+    margin:0px!important;
+  }
+  .notif-count {
+    position: absolute!important;
+    background: #ce4848!important;
+    color: white!important;
+    top: 30px!important;
+    padding: 0px!important;
+    border-radius: 25px!important;
+    min-width: 25px!important;
+    margin-left: 15px!important;
   }
 </style>

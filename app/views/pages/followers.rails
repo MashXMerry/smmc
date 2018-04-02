@@ -1,0 +1,48 @@
+<%= render 'pages_partials/navbar1' %>
+
+<div class="row">
+	<div class="col s12 m10 l8 offset-l2 offset-m1 friend-container">
+		<center><h4><%= @followers.count %> Follower</h4></center>
+		<ul class="collection">
+			<% @followers.each do |follower| %>
+				<li class="collection-item avatar">
+		    	<%= image_tag "profile.jpg" , class:"circle" %>
+		      <%= link_to follower.friend_fname + " " + follower.friend_lname, user_account_path(follower.friend_name) , class:"black-text" %>
+		      (<%= follower.friend_name %>)<br>
+		      <p><%= follower.friend_email %></p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+			<% end %>
+			<% @users.each do |user| %>
+				<h4><%= user.firstname %></h4>
+			<% end %>
+	  </ul>
+	</div>
+</div>
+
+<style>
+	.friend-container {
+		padding-right: 0px!important;
+		padding-left: 0px!important;
+	}
+	.title {
+		font-family: Quicksand;
+		font-size:30px;
+		margin-bottom: -5px;
+	}
+	.friend-name {
+		margin-top: 3%!important;
+    margin-bottom: 15px!important;
+    position: relative;
+    font-family: Quicksand;
+    font-size: 18px;
+	}
+	.friend-photo {
+		position: relative;
+		margin-top: 1%!important;
+	}
+	.friend-option {
+		position: relative;
+		margin-top: 2%!important;
+	}
+</style>

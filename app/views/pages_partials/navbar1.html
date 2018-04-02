@@ -1,220 +1,146 @@
-<nav class="purple darken-1" id="my-navbar" style="margin-bottom: 60px;">
-  <div class="container nav-wrapper">
-    <%= link_to "Sumimachine" , root_path , class:"brand-logo" %>
-    <a href="#" data-activates="slide-out" class="button-collapse show-on-small hide-on-large-only"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li>
-          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'top' , 'data-tooltip' => "#{current_user.firstname}", 'data-delay' => '10' do %>
-            <i class="material-icons">account_circle</i>
-          <% end %>
-        </li>
-        <li>
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Messages" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
-            <i class="material-icons">messages</i>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Home" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
-            <i class="material-icons">home</i>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Followers" data-delay="10" onclick="Materialize.toast('Nothing to see here' , 1000)">
-            <i class="material-icons">insert_emoticon</i>
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-button" data-activates="notification-drop">
-            <% if @notification.empty? %>
-
-            <% else %>
-              <% if @unread_notification.count < 1 %>
-                <!-- No counter will show -->
-              <% else %>
-                <span class="badge red white-text my-badge" id="counter">
-                  <%= @unread_notification.count %>
-                </span>
-              <% end %><!-- if unread notification.count < 1 -->
-            <% end %><!-- if @notification.empty? -->
-            <i class="material-icons">person_pin_circle</i>
-          </a>
-        </li>
-        <li>
-          <a href="" class="dropdown-button" data-activates="dropdownA">
-            <i class="material-icons">more_vert</i>
-          </a>
-        </li>
-        <ul class="dropdown-content" id="dropdownA">
-          <li><%= link_to "Settings", edit_user_registration_path , class:"center" %></li>
-          <li><%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"center" %></li>
-        </ul>
-      </ul>
-      <ul class="dropdown-content" id="notification-drop">
-        <% if @notification.empty? %>
-          <li><a>You don't have any notifications yet.</a></li>
-        <% else %>
-          <% @notification.each do |notif| %>
-            <li class="gray" id="notif<%= notif.id %>">
-              <%= link_to mark_path(notif.id), method: :put , remote: :true do %>
-                <i class="material-icons">person</i><%= notif.content %>
-              <% end %><!-- link_to mark_path -->
-            </li>
-          <% end %><!-- @notification.each -->
-        <% end %><!-- if @notification.empty? -->
-      </ul>
-  </div>
-
-  <nav class="purple lighten-2 my-navbar">
-    <div class="container nav-wrapper">
-      <ul class="right hide-on-large-only show-on-small">
-        <li class="waves-effect waves-violet">
-          <%= link_to profile_path , class:"tooltipped" , 'data-position' => 'top' , 'data-tooltip' => "#{current_user.firstname}"  do %>
-            <i class="material-icons">account_circle</i>
-          <% end %>
-        </li>
-        <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Messages">
-            <i class="material-icons">messages</i>
-          </a>
-        </li>
-        <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Home">
-            <i class="material-icons">home</i>
-          </a>
-        </li>
-        <li class="waves-effect waves-violet">
-          <a href="#" class="tooltipped" data-position="top" data-tooltip="Followers">
-            <i class="material-icons">insert_emoticon</i>
-          </a>
-        </li>
-        <li class="waves-effect waves-violet">
-          <%= link_to notifications_path , 'data-position' => 'top' , 'data-tooltip' => 'Notifications' , class:"tooltipped" do %>
-            <% if @notification.empty? %>
-              <!-- soon -->
-            <% else %>
-              <% if @unread_notification.count < 1 %>
-                <!-- No counter will show -->
-              <% else %>
-                <span class="badge red white-text my-badge" id="counter">
-                  <%= @unread_notification.count %>
-                </span>
-              <% end %><!-- if @unread_notification.count < 1 -->
-            <% end %><!-- if @notification.empty? -->
-            <i class="material-icons">person_pin_circle</i>
-          <% end %>
-          </a>
-        </li>
-        <li>
-          <a href="#!" class="dropdown-button" data-activates="dropdown4">
-            <i class="material-icons">more_vert</i>
-          </a>
-        </li>
-      </ul>
-
-      <ul class="dropdown-content" id="dropdown4">
-        <li><%= link_to "Settings" , edit_user_registration_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete %></li>
-      </ul>
-      
-      <ul class="left hide-on-med-and-down">
-        <li><%= link_to "Home" , root_path %></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Anime</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Music</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Manga</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Games</a></li>
-        <li>
-          <a class="dropdown-button" href="#!" data-activates="dropdown2">more<i class="material-icons right">arrow_drop_down</i>
-            </a>
-        </li>
-      </ul>
-      <!-- More -->
-      <ul class="dropdown-content" id="dropdown2">
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-        <li><a href="#" onclick="Materialize.toast('Nothing to see here' , 1000)">Links</a></li>
-      </ul>
-    </div>
-  </nav>
-</nav>
-<!-- Mobile Side Nav -->
-<ul id="slide-out" class="side-nav">
-  <li>
-    <div class="user-view">
-      <div class="background">
-        <%= image_tag "sidenav_bg.jpg", style:"width:100%" %>
-      </div>
-      <a href="#!user"><%= image_tag "avatar.jpg" , class:"circle" %></a>
-      <a href="#!name">
-        <span class="white-text name">
-        <%= current_user.firstname + " " + current_user.lastname %>
-        </span>
-      </a>
-      <a href="#!email">
-        <span class="white-text email">
-          <%= current_user.email %>
-        </span>
-      </a>
-    </div>
-  </li>
-  <li><a href="#"><i class="material-icons">video_library</i>Anime</a></li>
-  <li><a href="#"><i class="material-icons">speaker</i>Music</a></li>
-  <li><a href="#"><i class="material-icons">books</i>Manga</a></li>
-  <li><a href="#"><i class="material-icons">games</i>Games</a></li>
-  <li>
-    <li>
-      <a href="" class="dropdown-button" data-activates="dropdown3">
-        <i class="material-icons">keyboard_arrow_down</i><%= current_user.firstname %>
-      </a>
-    </li>
-    <ul class="dropdown-content gray" id="dropdown3">
+<nav class="purple">
+  <div class="nav-wrapper container">
+    <%= link_to "Sumimachine",  root_path , class:"brand-logo" %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
+  <!-- navbar -->
+    <ul class="right hide-on-med-and-down">
       <li>
-        <%= link_to "Logout" ,destroy_user_session_path , method: :delete %>
+        <%= link_to profile_path do %>
+          <i class="material-icons">person</i>
+        <% end %>
       </li>
       <li>
-        <%= link_to "Account Settings" ,edit_user_registration_path %>
+        <%= link_to profile_path do %>
+          <i class="material-icons">messages</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to profile_path do %>
+          <i class="material-icons">sentiment_very_satisfied</i>
+        <% end %>
+      </li>
+      <li>
+        <a class="dropdown-button" data-activates="dropdown-notification">
+          <i class="material-icons">notifications</i>
+        </a>
+      </li>
+      <li>
+        <a class="dropdown-button" data-activates="dropdown-logout">
+          <i class="material-icons">more_vert</i>
+        </a>
       </li>
     </ul>
-  </li>
-</ul>
 
-<style type="text/css">
-  .brand-logo {
-    font-family: 'coiny';
+  <!-- dropdowns -->
+    <ul id="dropdown-notification" class="dropdown-content notification-drop">
+      <% @notification.each do |notif| %>
+        <li>
+          <a href="" class="center valign-wrapper">
+            <i class="material-icons">sentiment_very_satisfied</i>
+            <%= notif.content %>
+          </a>
+        </li> 
+      <% end %> 
+    </ul>
+
+    <ul id="dropdown-logout" class="dropdown-content setting-drop">
+      <li><%= link_to "Settings" , edit_user_registration_path, class:"center" %></li>
+      <li><%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"center" %></li> 
+    </ul>
+  <!-- navbar -->
+
+  <!-- side nav -->
+    <ul class="side-nav" id="mobile-demo">
+      <li><%= link_to current_user.firstname, profile_path %></li>
+      <li><a href="#">Anime</a></li>
+      <li><a href="#">Games</a></li>
+      <li><a href="#">Manga</a></li>
+      <li><a href="#">Music</a></li>
+    </ul>
+  <!-- side nav -->
+  </div>
+
+  <nav class="purple lighten-2">
+    <div class="nav-wrapper container">
+      
+      <ul class="hide-on-med-and-down">
+        <li><a href="#">Anime</a></li>
+        <li><a href="#">Manga</a></li>
+        <li><a href="#">Music</a></li>
+        <li><a href="#">Games</a></li>
+      </ul>
+
+      <ul class="right hide-on-large-only">
+        <li>
+          <%= link_to profile_path do %>
+            <i class="material-icons">person</i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to profile_path do %>
+            <i class="material-icons">messages</i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to profile_path do %>
+            <i class="material-icons">sentiment_very_satisfied</i>
+          <% end %>
+        </li>
+        <li>
+          <a class="dropdown-button" data-activates="dropdown-notification-2">
+            <i class="material-icons">notifications</i>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-button" data-activates="dropdown-logout-2">
+            <i class="material-icons">more_vert</i>
+          </a>  
+        </li>
+      </ul>
+      <!-- dropdown-notification-2 -->
+      <ul id="dropdown-notification-2" class="dropdown-content notification-drop">
+        <% @notification.each do |notif| %>
+          <li>
+            <a href="" class="center valign-wrapper">
+              <i class="material-icons">sentiment_very_satisfied</i>
+              <%= notif.content %>
+            </a>
+          </li> 
+        <% end %>
+      </ul>
+      <!-- dropdown logout -->
+      <ul id="dropdown-logout-2" class="dropdown-content setting-drop">
+        <li><%= link_to "Settings" , edit_user_registration_path, class:"center" %></li>
+        <li><%= link_to "Logout" , destroy_user_session_path , method: :delete , class:"center" %></li> 
+      </ul>
+
+    </div>
+  </nav><!-- 2nd NAVBAR -->
+</nav><!-- 1st NAVBAR -->
+
+
+<style>
+  body {
+    font-family: Quicksand;
   }
-  nav {
-    font-family: "Quicksand";
-  }
-  .my-badge {
-    position: absolute;
-    top: 35px;
-    min-width: 0!important;
-    margin-left: 15px!important;
-  }
-  #notification-drop {
+
+  .notification-drop {
     width: 35%!important;
     font-size: 10px!important;
     top:100%!important;
     left:75%!important;
   }
-  #notification-drop a {
+
+  .setting-drop {
+    top: 100%!important;
+  }
+  .notification-drop a {
     font-size: 11px!important;
   }
 
   .dropdown-content li > a, .dropdown-content li > span {
-    color: #100015!important;
+    color: #896694!important;
   }
 </style>
-
-<script>
-  $(document).ready(function() {
-    <% @notification.each do |notif| %>
-      $('#notif<%= notif.id %>').on('click', function() {
-      });
-    <% end %>
-  });
-</script>

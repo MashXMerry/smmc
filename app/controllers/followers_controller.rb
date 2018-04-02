@@ -6,13 +6,17 @@ class FollowersController < ApplicationController
 		Follower.create(
 			:user_id => current_user.id,
 			:friend_id => friend_id,
-			:following => true
+			:following => true,
+			:friend_name => current_user.username.parameterize,
+			:friend_fname => current_user.firstname,
+			:friend_lname => current_user.lastname,
+			:friend_email => current_user.email
 		)
 
 		Notification.create(
 			:user_id => current_user.id,
 			:friend_id => friend_id,
-			:content => "#{current_user.firstname + " " + current_user.lastname } starts following you",
+			:content => "#{current_user.firstname} starts following you",
 			:marked => false,
 			:notif_type => "Following"
 		)
@@ -40,6 +44,7 @@ class FollowersController < ApplicationController
 		respond_to do |format|
 			if notification.update(:marked => true)
 				format.js
+				format.html { redirect_to request.referrer , notice: "" }
 			end
 		end
 	end
@@ -47,7 +52,7 @@ class FollowersController < ApplicationController
 	protected
 
 	def follower_params
-		params.require(:follower).permit(:user_id,:friend_id,:following)
+		params.require(:follower).permit(:user_id,:friend_id,:following, :friend_name , :friend_fname, :friend_lname, :friend_email)
 	end
 
 end

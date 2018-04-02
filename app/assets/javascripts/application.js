@@ -20,7 +20,12 @@ $(document).ready(function() {
 	$('.slider').slider({
 		indicators: false
 	});
-	$(".button-collapse").sideNav();
+	$(".button-collapse-2").sideNav({
+    edge: 'right'
+  });
+	$(".button-collapse").sideNav({
+		edge: 'left'
+	});
 	$('.modal').modal();
 	$('.dropdown-button').dropdown({
 	    inDuration: 300,

@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class="fixed-action-btn horizontal">
-    <a class="btn-floating btn-large purple waves-effect waves-blue">
+    <a class="btn-floating btn-large purple waves-effect waves-blue pulse">
       <i class="large material-icons">more_vert</i>
     </a>
     <ul>
@@ -27,7 +27,7 @@
     </ul>
   </div>
 
-  <div id="searchUser" class="modal">
+  <div id="searchUser" class="modal modal-fixed-footer">
     <%= form_tag search_user_path, method: :get do %>
       <div class="modal-content">
         <h5 class="center">Search user</h5>
@@ -45,12 +45,33 @@
   </div>
 <% end %>
 
+a
+
+<style>
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(186, 104, 200);
+    transition: .5s;
+  }
+  .modal.open{
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+    top: 50 !important;
+  }
+  .modal-content {
+    height: calc(100% - 56px);
+  }
+</style>
+
 <script>
   $(document).ready(function() {
     $('#autocomplete-input').on('keypress', function() {
       $.ajax({
         type: 'get',
-        url: 'https://sumimachine.herokuapp.com/users/users_json',
+        url: 'http://localhost:3000/users/users_json',
         success: function(response) {
           var userArray = response;
           var user = {}
@@ -62,7 +83,7 @@
             limit: 10,
             onAutocomplete: function() {
             },
-            minLength: 1
+            minLength: 2
           });/*autocomplete*/
         }
       })

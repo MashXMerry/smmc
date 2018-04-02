@@ -1,0 +1,67 @@
+<%= render 'pages_partials/navbar1' %>
+
+<div class="container">
+	<div class="row" style="margin-top: 100px;margin-bottom: 100px">
+		<div class="col s12 m10 l8 offset-l2 offset-m1">
+			<% if @user.empty? %>
+				<center><h3>No Username found</h3></center>
+			<% else %>
+				<ul class="collection">
+					<% @user.each do |user| %>
+						<li class="collection-item avatar">
+						  <%= image_tag "avatar.jpg" , class:"circle" %>
+						  <% if user.id == current_user.id %>
+						  	<p class="fullname">
+						  		<%= link_to user.firstname + " " + user.lastname , profile_path , class:"black-text" %>
+						  		(You)
+						    </p>
+						  <% else %>
+						  	<p class="fullname">
+						    	<a href="" class="black-text"><%= user.firstname + " " + user.lastname %></a>
+						    	<% if user.username.blank? %>
+						    	<% else %>
+						    		(<%= user.username %>)
+						    	<% end %>
+						    </p>
+						  <% end %>
+						  <p class="email"><%= user.email %></p>
+						  <% if user.id == current_user.id %>
+						  	
+						  <% else %>
+						  	<% if @following.present? %>
+						    	<%= link_to unfollow_path(user.id) , method: :delete , class:"secondary-content tooltipped red-text" , 'data-tooltip' => 'Unfollow' , 'data-position' => 'top' , 'data-delay' => '10' do %>
+						    		<i class="material-icons">sentiment_very_dissatisfied</i>
+						    	<% end %>
+						    <% elsif @unfollowed.present? %>	
+						    	<%= link_to follow_again_path(user.id) , method: :put , class:"secondary-content tooltipped green-text" , 'data-tooltip' => 'Follow' , 'data-position' => 'top' , 'data-delay' => '10' do %>
+						    		<i class="material-icons">person_add</i>
+						    	<% end %>
+						    <% else %>
+						    	<%= link_to follow_path(user.id) , method: :post , class:"secondary-content tooltipped green-text" , 'data-tooltip' => 'Follow' , 'data-position' => 'top' , 'data-delay' => '10' do %>
+						    		<i class="material-icons">person_add</i>
+						    	<% end %>
+						    <% end %>
+						  <% end %>
+						</li>
+					<% end %>
+			  </ul>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<%= render 'pages_partials/floating_button' %>
+
+<style>
+	.fullname {
+		font-family: Quicksand;
+		font-size:20px;
+		padding-top: 5px;
+	}
+	.email {
+		font-family: Quicksand;
+		font-size:15px;
+	}
+</style>
+
+

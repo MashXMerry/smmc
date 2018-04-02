@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 	get 'users/users_json' , to: 'pages#user_json' 
 	get 'user/user_bio/:id' , to: 'pages#bio_json'
 
-
 	#CUSTOM ROUTES
+	get "/users/profile/:username" , to: 'pages#user_account' , as: 'user_account'
+	get "/users/profile/:id" , to: 'pages#user_account' , as: 'user_account_id'
 	get '/profile' , to: 'pages#profile' , as: 'profile'
-	get '/friends' , to: 'pages#friends' , as: 'friends'
+	get '/followers' , to: 'pages#followers' , as: 'followers'
 	get '/user/search-user', to: 'pages#searchUser' , as: 'search_user'
 	put '/user/update-bio/:id' , to: 'pages#updateBio' , as: 'update_bio'
 

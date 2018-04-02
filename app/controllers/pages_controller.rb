@@ -1,10 +1,11 @@
 class PagesController < ApplicationController
-	before_action :authenticate_user! , only: [:profile , :user_json , :searchUser , :redirect, :notifications]
+	before_action :authenticate_user! , 
+	only: [:profile , :user_json , :searchUser , :redirect, :notifications, :user_account, :followers]
 	
 	def index
 		if user_signed_in?
 			@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-			@notification  = Notification.all.where(:friend_id => current_user.id)
+			@notification  = Notification.all.where(:friend_id => current_user.id).limit(20).order('created_at DESC')
 		end
 	end
 
@@ -18,7 +19,7 @@ class PagesController < ApplicationController
 		@follower = Follower.where(:friend_id => current_user.id , :following => true)
 		# ==========================================================================
 		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id)
+		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
 		# ==========================================================================
 		@user = User.new
 		@id = current_user.id
@@ -28,6 +29,7 @@ class PagesController < ApplicationController
 			@firstname = profile.firstname
 			@lastname = profile.lastname
 			@bio = profile.bio
+			@email = profile.email
 			if @current_user.middlename.blank?
 				@fullname = profile.firstname + " " + profile.lastname
 			else
@@ -42,9 +44,12 @@ class PagesController < ApplicationController
 		end	# @profile.each
 	end
 
-	def friends
+	def followers
 		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id)
+		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
+
+		@followers = Follower.all.select(:user_id).where(:friend_id => current_user.id)
+		@users = User.all.where(:id => @followers)
 	end
 
 	def updateBio
@@ -66,16 +71,37 @@ class PagesController < ApplicationController
 
   def searchUser
   	@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id)
+		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
+		@user = User.where(["username LIKE?" , "%#{params[:search]}%"]).limit(10).order('firstname ASC')
   	if params[:search].blank?
-  		redirect_to root_path
+			redirect_to root_path
   	else
-  		@user = User.all.where(["username LIKE ?" , "#{params[:search]}"]).limit(10)
-
   		@user.each do |user|
   			@following = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => true)
   			@unfollowed = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => false)
   		end
+  	end
+  end
+
+  def user_account
+  	if params[:username] === current_user.username
+  		redirect_to profile_path
+  	else
+  		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+			@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
+	  	@user = User.where(:username => params[:username])
+				if @user.blank?
+					render 'redirect'
+				else		
+					@user = User.all.where(:username => params[:username])
+					@user.each do |user|
+						@following_count = Follower.where(:user_id => user.id , :following => true)
+						@follower_count = Follower.where(:friend_id => user.id , :following => true)
+						# ==============================================================================
+						@following = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => true)
+  					@unfollowed = Follower.where(:user_id => current_user.id , :friend_id => user.id, :following => false)
+					end	
+				end
   	end
   end
 

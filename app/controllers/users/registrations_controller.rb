@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
-  before_action :notification, only: [:edit]
+  before_action :notification
   before_action :configure_account_update_params, only: [:update]
   # GET /resource/sign_up
   def new
@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     super
+    
   end
 
   # PUT /resource
@@ -40,7 +41,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   def notification
-    @notification  = Notification.all.where(:friend_id => current_user.id)
+    @unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+      @notification  = Notification.all.where(:friend_id => current_user.id).limit(20).order('created_at DESC')
   end
 
   # If you have extra params to permit, append them to the sanitizer.
