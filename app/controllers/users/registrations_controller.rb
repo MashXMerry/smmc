@@ -40,9 +40,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+  
   def notification
-    @unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+    if user_signed_in?
+      @unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
       @notification  = Notification.all.where(:friend_id => current_user.id).limit(20).order('created_at DESC')
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
