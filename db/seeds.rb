@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 	User.delete_all
+	Notification.delete_all
+	Follower.delete_all
