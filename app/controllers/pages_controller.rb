@@ -1,12 +1,10 @@
 class PagesController < ApplicationController
+	before_action :notification , only: [:index, :profile, :followers, :searchUser, :user_account]
 	before_action :authenticate_user! , 
 	only: [:profile , :user_json , :searchUser , :redirect, :notifications, :user_account, :followers]
 	
 	def index
-		if user_signed_in?
-			@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-			@notification  = Notification.all.where(:friend_id => current_user.id).limit(20).order('created_at DESC')
-		end
+
 	end
 
 	def user_json
@@ -17,9 +15,6 @@ class PagesController < ApplicationController
 	def profile
 		@following = Follower.where(:user_id => current_user.id , :following => true)
 		@follower = Follower.where(:friend_id => current_user.id , :following => true)
-		# ==========================================================================
-		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
 		# ==========================================================================
 		@user = User.new
 		@id = current_user.id
@@ -45,9 +40,6 @@ class PagesController < ApplicationController
 	end
 
 	def followers
-		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
-
 		@followers = Follower.all.select(:user_id).where(:friend_id => current_user.id)
 		@users = User.all.where(:id => @followers)
 	end
@@ -70,8 +62,6 @@ class PagesController < ApplicationController
   end
 
   def searchUser
-  	@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-		@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
 		@user = User.where(["username LIKE?" , "%#{params[:search]}%"]).limit(10).order('firstname ASC')
   	if params[:search].blank?
 			redirect_to root_path
@@ -87,8 +77,6 @@ class PagesController < ApplicationController
   	if params[:username] === current_user.username
   		redirect_to profile_path
   	else
-  		@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
-			@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
 	  	@user = User.where(:username => params[:username])
 				if @user.blank?
 					render 'redirect'
@@ -114,7 +102,10 @@ class PagesController < ApplicationController
   protected
 
   def notification
-  	@notification  = Notification.all.where(:friend_id => current_user.id)
+  	if user_signed_in?
+	  	@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+			@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
+  	end
   end
 
   def user_params
