@@ -1,4 +1,4 @@
-<%= form_for @user , url: update_bio_path(current_user.id) , method: :put do |f| %>
+<%= form_for @user , url: update_bio_path(current_user.id), remote: true , method: :put do |f| %>
   <div class="modal-content">
   	<center><h4>Add bio</h4></center>
   	<div class="input-field">

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :notification , only: [:index, :profile, :followers, :searchUser, :user_account]
+	before_action :notification , only: [:index, :profile, :searchUser, :user_account]
 	before_action :authenticate_user! , 
 	only: [:profile , :user_json , :searchUser , :redirect, :notifications, :user_account, :followers]
 	
@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 		@user = User.new
 		@id = current_user.id
 		@profile = User.where(:id => @id)
+		@bio = current_user.bio
 		# ==========================================================================
 		@profile.each do |profile|
 			@firstname = profile.firstname
@@ -39,18 +40,13 @@ class PagesController < ApplicationController
 		end	# @profile.each
 	end
 
-	def followers
-		@followers = Follower.all.select(:user_id).where(:friend_id => current_user.id)
-		@users = User.all.where(:id => @followers)
-	end
-
 	def updateBio
 		@user = User.find(params[:id])
 		@user.update(bio_params)
 		respond_to do |format|
 			if @user.save
 				format.html { redirect_to profile_path }
-				# format.js
+				format.js
 			end
 		end	
 	end

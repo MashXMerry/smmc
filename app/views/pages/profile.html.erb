@@ -34,13 +34,13 @@
 	    <a class="blue-text"><%= @follower.count %> follower</a>
 	  </div>
 	</div>
-	<p class="bio">
+	<p class="bio" id="bio-container">
 		<% if @bio.blank? %>
 			<a class="modal-trigger green-text" href="#modal-update-bio">
 				Add bio <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 			</a>
 		<% else %>
-			<small><%= @bio %></small><br>
+			<%= render 'bio' %><br>
 			<small>
 				<u>
 					<a href="#modal-update-bio" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Edit bio">Edit bio</a>

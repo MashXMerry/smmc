@@ -1,4 +1,5 @@
 class FollowersController < ApplicationController
+	before_action :notification , only: [:followers]
 	before_action :authenticate_user! , only: [:create, :destroy]
 
 	def create
@@ -49,7 +50,23 @@ class FollowersController < ApplicationController
 		end
 	end
 
+	def followers
+		@followers = Follower.all.select(:user_id).where(:friend_id => current_user.id)
+		@users = User.all.where(:id => @followers)
+	end	
+
 	protected
+
+	def following
+		
+	end
+
+	def notification
+  	if user_signed_in?
+	  	@unread_notification = Notification.all.where(:friend_id => current_user.id , :marked => false)
+			@notification  = Notification.all.where(:friend_id => current_user.id).order('created_at DESC')
+  	end
+  end
 
 	def follower_params
 		params.require(:follower).permit(:user_id,:friend_id,:following, :friend_name , :friend_fname, :friend_lname, :friend_email)

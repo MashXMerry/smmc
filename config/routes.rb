@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 	get "/users/profile/:username" , to: 'pages#user_account' , as: 'user_account'
 	get "/users/profile/:id" , to: 'pages#user_account' , as: 'user_account_id'
 	get '/profile' , to: 'pages#profile' , as: 'profile'
-	get '/followers' , to: 'pages#followers' , as: 'followers'
+	get '/followers' , to: 'followers#followers' , as: 'followers'
 	get '/user/search-user', to: 'pages#searchUser' , as: 'search_user'
 	put '/user/update-bio/:id' , to: 'pages#updateBio' , as: 'update_bio'
 

@@ -1,0 +1,80 @@
+<%= render 'pages_partials/navbar1' %>
+
+<div class="row" style="margin-top: 100px;">
+	<div class="col hide-on-med-and-down m2 l4" style="margin-top: 50px;">
+		<%= form_tag search_user_path , method: :get do %>
+
+		<div class="input-field col s12">
+      <i class="material-icons prefix">textsms</i>
+      <%= text_field_tag :search , params[:search], id: "autocomplete-input" , class:"autocomplete" , required:true %>
+      <label for="autocomplete-input">Search username</label>
+    </div>
+		<% end %>
+	</div>
+	<div class="col s12 m12 l8 friend-container">
+		<center><h4><%= @followers.count %> Follower</h4></center>
+		<ul class="collection">
+			<% @users.each do |user| %>
+				<li class="collection-item avatar">
+		    	<%= image_tag "profile.jpg" , class:"circle" %>
+		      <%= link_to user.firstname + " " + user.lastname, user_account_path(user.username) , class:"black-text" %>
+		      (<%= user.username %>)<br>
+		      <p><%= user.email %></p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>	
+			<% end %>
+	  </ul>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#autocomplete-input').on('keypress', function() {
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost:3000/users/users_json',
+				success: function(response) {
+					var userArray = response
+					var user = {}
+					for(var x in response) {
+						user[userArray[x].username] = '/assets/avatar-fc15e2d91ad61563f4154daead92089a7d116758a4e7f879ec5d483eaa3fac03.jpg'
+					}
+					$('input.autocomplete').autocomplete({
+            data: user,
+            limit: 10,
+            onAutocomplete: function() {
+            },
+            minLength: 1
+          });/*autocomplete*/
+				}
+			});
+		});
+	});
+</script>
+
+<style>
+	.friend-container {
+		padding-right: 0px!important;
+		padding-left: 0px!important;
+	}
+	.title {
+		font-family: Quicksand;
+		font-size:30px;
+		margin-bottom: -5px;
+	}
+	.friend-name {
+		margin-top: 3%!important;
+    margin-bottom: 15px!important;
+    position: relative;
+    font-family: Quicksand;
+    font-size: 18px;
+	}
+	.friend-photo {
+		position: relative;
+		margin-top: 1%!important;
+	}
+	.friend-option {
+		position: relative;
+		margin-top: 2%!important;
+	}
+</style>

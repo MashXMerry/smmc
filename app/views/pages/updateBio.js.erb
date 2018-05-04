@@ -1,3 +1,4 @@
-Materialize.toast("Bio successfully added");
+Materialize.toast("Bio Updated",1000);
+$("#bio_id").remove();
 $('#modal-update-bio').modal('close');
-$('#bio').prepend("<%= j render @bio %>");
+$('#bio-container').prepend('<small id="bio_id"><%= current_user.bio %></small>');
